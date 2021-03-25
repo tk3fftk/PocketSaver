@@ -1,0 +1,85 @@
+=====================================================================
+【名    称】  GLDPNG  ver 3.4.3
+【登 録 名】  GLDPNG343.lzh
+【制作者名】  tarquin  (tarquin@px-c.net)
+【掲載者名】  tarquin  (tarquin@px-c.net)
+【 ＵＲＬ 】  http://www.phoenix-c.or.jp/~taki/
+【対応言語】  Delphi 3/4/5/6 & C++Builder 3/4/5(サポート対象外)
+【動作環境】  日本語WINDOWS95/NT3.51以上
+【作成月日】  2002/3/17(マニュアルなどの修正版)
+【作成方法】  LHAで解凍
+------------
+【動作確認】  自作ＡＴ(セレロン633MHz/512M) Windows2000(SP2) + Delphi4
+【ソフト種】  フリーソフト
+【サポート】  メール
+【転載条件】  禁止
+=====================================================================
+
+１．始めに
+    
+    ダウンロードありがとうございます。
+    このライブラリは、TJPEGImageみたいなPNGフォーマットの読み書きを
+    行うクラスです。
+
+    対象言語はDelphi3(C++builder3)以上になっています。Delphi2や
+    C++builder1の方は大変申し訳ありませんがこのライブラリは使用できません。
+    注意：C++Builderの場合はコンパイル可能ですがサポート対象外です。
+
+    詳しい使い方は付属の manual\GLDPNG3.html を必ずお読みください。
+
+
+２．インストール
+
+    解凍したファイルを、Delphiのライブラリパスが通っている
+    フォルダにコピーしてください。
+    展開したファイルは以下の通りか確認してください。
+
+      adler32       .obj  ZLIB ver 1.1.3
+      crc32         .obj          
+      deflate       .obj
+      infblock      .obj
+      infcodes      .obj
+      inffast       .obj
+      inflate       .obj
+      inftrees      .obj
+      infutil       .obj
+      trees         .obj
+      zutil         .obj
+      zlib          .txt
+      tkZLIB        .pas
+      
+      GLDZLIB       .pas  ZLIB用関数
+
+      taki          .inc  条件コンパイラ＆コンパイラ設定
+      SFunc         .pas  汎用関数ライブラリ
+      GLDStream     .pas  ストリームクラス
+      GLDPNGStream  .pas  PNGストリームクラス
+      GLDPNG        .pas  TGLDPNG 本体
+             
+      GLDPNG3       .txt  このファイル
+      
+      manual\
+       GLDPNG3      .html リファレンス
+       GLDPNG3_ref  .html クラスリファレンス
+       GLDPNG_FAQ   .html FAQ
+
+    <旧バージョン(3.4以下のバージョンすべて)をお持ちの皆様へ>
+     インストール前に旧バージョンのすべてのファイルを削除してから
+     解凍・インストールを行ってください！
+
+
+３．アンインストール
+
+    IDEにコンポーネントとしてインストールしている場合は、
+    アンインストールしてください。
+    その後、展開したファイルをすべて削除してください。
+
+
+４．サンプルについて
+
+    付属のサンプルはDelphi4で作られております。そのためDelphi3や
+    C++Builder3では読み込めない可能性があります。
+    また、プロジェクトファイルはこちらの開発環境にあわせた設定が
+    されておりますので御注意ください。
+
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="4"
+   name=""
+   committed-date="2005-02-13T06:36:05.324234Z"
+   url="file:///T:/home/SVN/PocketSaver/trunk"
+   last-author="toby"
+   kind="dir"
+   uuid="f5fc19ef-0d3e-4843-a5d8-80f92dcd1c0c"
+   revision="4"/>
+<entry
+   name="source"
+   kind="dir"/>
+<entry
+   committed-rev="4"
+   name="PocketSaver.exe"
+   text-time="2005-02-13T06:36:51.805932Z"
+   committed-date="2005-02-13T06:36:05.324234Z"
+   checksum="856b0931380389731fc2850251760342"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-13T06:36:21.432681Z"/>
+<entry
+   committed-rev="2"
+   name="test.sav"
+   text-time="2005-02-10T23:51:26.968750Z"
+   committed-date="2004-12-23T23:12:34.484375Z"
+   checksum="9d0fa5160b09febefb3a10b0f8e94ed6"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:26.843750Z"/>
+<entry
+   committed-rev="4"
+   name="readme.txt"
+   text-time="2005-02-13T06:36:21.635795Z"
+   committed-date="2005-02-13T06:36:05.324234Z"
+   checksum="0bf27c4fffeb001ed3551562ecf6280d"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-13T06:36:21.526426Z"/>
+</wc-entries>

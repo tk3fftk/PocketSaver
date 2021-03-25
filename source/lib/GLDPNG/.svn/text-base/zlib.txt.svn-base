@@ -1,0 +1,22 @@
+------------------------------------------------------------
+【 タイトル 】 ZLIB ver 1.1.3  Delphi用Objファイル集
+【 著作権元 】 Jean-loup Gailly & Mark Adler
+【 転載者   】 Tarquin (tarquin@px-c.net)
+【 対応言語 】 Delphi2/C++builder1以上 
+【 転載条件 】 禁止
+------------------------------------------------------------
+
+ZLIB ver 1.1.3をDelphiに合うようにObjファイル化したものです。
+なお、使用した場合、各自の責任で使ってください。
+
+オリジナルと違うのは、zutil.cのzcallocとzcfreeをなにもしない
+関数にしただけです。
+
+コンパイルはC++Builder1のBCC32で行っています。
+
+また、ZLIBの著作権は、
+  Jean-loup Gailly        Mark Adler
+  gzip@prep.ai.mit.edu    madler@alumni.caltech.edu
+にあります。
+
+

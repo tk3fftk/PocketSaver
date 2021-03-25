@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="ni3pwtx8g_v">
+    <property name="$name" value="デフォルト" />
+    <property name="$defaultDiagram" value="True" />
+    <property name="$metaclass" value="Package Diagram" />
+    <reference referencedUin="design:view:::ol3erp0mq_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:PocketSaver:CameraAnalyzerUnit.TCameraAnalyzer" />
+    </reference>
+    <reference referencedUin="design:view:::rk360lt2g_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:PocketSaver:HeapChecker.TErrorReporter" />
+      <reference referencedUin="delphi:e_class:src:PocketSaver:HeapChecker.TLogFileErrorReporter" />
+    </reference>
+    <reference referencedUin="design:view:::9k3cgu8kf_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:PocketSaver:MainFormUnit.TMainForm" />
+    </reference>
+    <reference referencedUin="design:view:::x56brig7i55qotq_v">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>

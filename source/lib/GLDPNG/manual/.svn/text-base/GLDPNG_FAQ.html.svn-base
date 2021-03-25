@@ -1,0 +1,228 @@
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="Adobe PageMill 2.0J Win">
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
+  <TITLE>GLDPNG3.4　FAQ</TITLE>
+  <STYLE type="text/css">
+  <!--
+    A{text-decoration:none}
+    A:hover{text-decoration:underline;color:"#FF4500"}
+  -->
+  </STYLE>
+</HEAD>
+<BODY BGCOLOR="#ffffff" TEXT="#404040">
+
+<BLOCKQUOTE>
+  <P>[ <A HREF="GLDPNG3.html">戻る</A> ]</P>
+  <P><CENTER><TABLE BORDER="3" CELLPADDING="0" CELLSPACING="0" WIDTH="450">
+<TR>
+<TD WIDTH="100%">  <H1><CENTER>GLDPNG FAQ</CENTER></H1>
+
+  
+  <P ALIGN=RIGHT>copyright 2000-2001 tarquin all rights reserved.</TD></TR>
+</TABLE>
+</CENTER></P>
+  <P></P>
+  <P>ここでは今までGLDPNGに関しての寄せられた質問や疑問への回答、詳しい解説を載せておきます。</P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <OL>
+    <LI><A HREF="#Q1">C++Builderでインストール出来ません。</A>
+    <LI><A HREF="#Q2">クリップボード上でPNGデータを扱いたいんですが。</A>
+    <LI><A HREF="#Q3">16ビットで保存されているPNGを16ビットのままで読み込みたいんですが。</A>
+    <LI><A HREF="#Q4">48ビットはサポートしないんですか。</A>
+    <LI><A HREF="#Q5">コンパイルが失敗します。</A>
+    <LI><A HREF="#Q6">16ビットでうまく保存できません。</A>
+    <LI><A HREF="#Q7">256色での保存や読み込みで透明色や背景色のパレットインデックスが違うけど？</A>
+    <LI><A HREF="#Q8">アルファチャンネルの使い方を教えてください。</A>
+    <LI><A HREF="#Q9">5000x5000の大きな画像が読み込めません。</A>
+    <LI><A HREF="#Q10">WWWブラウザ上でGLDPNGで作成したPNG画像を使いましたがMacなどのWindows以外の環境で見ると色が少し変になるんですが。</A>
+    <LI><A HREF="#Q11">カイリックスには対応しますか？または移植予定は？</A>
+    <LI><A HREF="#Q12">IE5上で GLDPNG で作成した PNG 画像を使いましたが透過されず表示されます。</A>
+    <LI><A HREF="#Q13">GLDPNG とは関係ないのですが、TBitmap で Index 指定でパレット色を取りたいのですが・・・</A>
+  </OL>
+  <P><A NAME="Q1"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <H3>[Q1]</H3>
+  <P>C++Builder でインストール出来ません。</P>
+  <H3>[A1]</H3>
+  <P>私自身 c++builder１しかないので ver 3 以上ではよくわかりません。ですが中村さん作「nkdib」に説明がありましたので同じような手順で行えばインストール可能です。</P>
+  <P>まず、「ファイル」｜「開く」でパッケージソース (*.bpk) を開き、プロジェクトに
+  GLDPNG.pas を追加してコンパイルしてください。</P>
+  <P>次に($BCB)\lib に生成された GLDPNG 関連の hpp ファイルを($BCB)\include
+  にコピーしてください。</P>
+  <P>使用する際は、GLDPNG.hpp をインクルードし、</P>
+  <P><B>#pragma link &quot;GLDPNG.obj&quot;</B></P>
+  <P>で GLDPNG.obj をリンクするようにしてください。</P>
+  <P>なお、C++builder はサポート対象外ですのでご了承の上でご使用ください。</P>
+  <P>(2001/1/5 補足)</P>
+  <P>コンパイル中に</P>
+  <P><B>「[C++ エラー] GLDStream.hpp(26): E2015 'TBitmap' と 'Windows::TBitmap'
+  の区別が曖昧」</B></P>
+  <P>というエラーが出ましたら、そのエラー行の typedef を以下のように書き換えてください。</P>
+  <P><B>typedef Graphics::TBitmap TGLDBmp;</B></P>
+  <P><A NAME="Q2"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <H3>[Q2]</H3>
+  <P>クリップボード上で PNG データを扱いたいんですが。</P>
+  <H3>[A2]</H3>
+  <P>GLDPNG ではクリップボードの読み書きは Bitmap 形式のみです。これは各アプリケーションでの互換を考慮したためそうなっております。</P>
+  <P><A NAME="Q3"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <H3>[Q3]</H3>
+  <P>16ビットで保存されているPNGを16ビットのままで読み込みたいんですが。</P>
+  <H3>[A3]</H3>
+  <P>ver 3.3 から Read16Bit というプロパティが追加されおり、このプロパティを
+  TRUE にしていただけると 24ビット にせず 16ビット で読み込みます。</P>
+  <P><A NAME="Q4"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <H3>[Q4]</H3>
+  <P>48 ビットはサポートしないんですか。</P>
+  <H3>[A4]</H3>
+  <P>将来はサポートするかもしれませんが現状ではサポートしません。Windows
+  側でもサポートされていませんし・・。</P>
+  <P><A NAME="Q5"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <H3>[Q5]</H3>
+  <P>コンパイルが失敗します。</P>
+  <H3>[A5]</H3>
+  <P>古いバージョンの同名ファイルがそのまま残りますと正常にコンパイル出来ませんので古いバージョンのファイルはすべて削除してからインストールしてください。</P>
+  <P><A NAME="Q6"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <H3>[Q6]</H3>
+  <P>16ビット画像がうまく保存できません。</P>
+  <H3>[A6]</H3>
+  <P>TBitmap の PixelFromat プロパティが pfDevice や HandleType プロパティが
+  bmDDB になっていませんか？もしなっている場合は bmDIB に変えてから画面のビットカウントにあうように
+  PixelFormat プロパティで変換してください。</P>
+  <P>また、16bit と 15bit の区別ですが Windows ではマスク指定が無い場合は
+  5:5:5(3万色) になり、TBitmap ではマスク指定していないため 5:5:5(3万色)
+  が基準になります。ただし Bitmap を読み込んだ場合でマスク指定があれば 16bit
+  になるようです。</P>
+  <P><A NAME="Q7"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <H3>[Q7]</H3>
+  <P>256色での保存や読み込みで透明色や背景色のパレットインデックスが違うけど？</P>
+  <H3>[A7]</H3>
+  <P>原因は透明色や背景色と同じ色がパレット上に複数あるためです。ver 3.3
+  以下の GLDPNG では背景色や透明色は Index 形式ではなくRGB 形式にしているためこの様な認識ミスをしてしまいます。</P>
+  <P>ver 3.4 からは Index 形式もサポートされましたので上記のような問題は解消されています。</P>
+  <P><A NAME="Q8"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <H3>[Q8]</H3>
+  <P>アルファチャンネルの使い方を教えてください。</P>
+  <H3>[A8]</H3>
+  <P>アルファチャンネルを使って画像を合成する場合以下のように色を求めます。c0
+  を合成先、c1 を合成元、a をアルファチャンネル (0=不透明　255=透明) とした場合、</P>
+  <P>c0 = c1 + (( c0 - c1 ) * a ) / 255 )</P>
+  <P>で求められます。「こんな式を出されてもわからん」という人用に簡単なサンプルを用意しましたので参考にしてください。(^^;</P>
+  <PRE>// dest,source,alphaはすべて同じ大きさで
+// dest,sourceは24bit、alphaは8bit
+
+// Delphi版
+procedure AlphaBlt(dest,source,alpha: TBitmap);
+var
+ pSource,pDest,pAlpha: pbyte;
+ x,y, r,g,b,a: integer;
+
+begin 
+ for y:=0 to source.Height-1 do
+ begin
+  pDest:=dest.ScanLine[y];
+  pSouce:=source.ScanLine[y];
+  pAlpha:=alpha.ScanLine[y];
+  for x:=0 to source.Width-1 do
+  begin
+   a:=pAlpha^;
+   with PRGBQUAD(pSource)^ do
+   begin
+    r:=rgbRed; g:=rgbGreen; b:=rgbBlue;
+   end;
+   with PRGBQUAD(pDest)^ do
+   begin
+    rgbRed:=r+(((rgbRed-r)*a) div 255);
+    rgbGreen:=g+(((rgbGreen-g)*a) div 255);
+    rgbBlue:=b+(((rgbBlue-b)*a) div 255);
+   end;
+   Inc(pSource,3);
+   Inc(pDest,3);
+   Inc(pAlpha);
+  end;
+ end;
+end;
+
+// BCB版
+void AlphaBlt(TBitmap *dest,TBitmap *source,TBitmap *alpha) {
+ BYTE *pSource,*pDest,*pAlpha;
+ int x,y,r,g,b,a;
+
+ for(y=0;y&lt;source-&gt;Height;y++) {
+  pSource=(BYTE*)(pSource-&gt;ScanLine[y]);
+  pDest=(BYTE*)(pDest-&gt;ScanLine[y]);
+  pAlpha=(BYTE*)(pAlpha-&gt;ScanLine[y]);
+  for(x=0;x&lt;source-&gt;Width;pDest+=3,pSource+=3,pAlpha++,x++){
+   a=*pAlpha;
+   r=((RGBQUAD*)pSource)-&gt;rgbRed; // 間違っているかも・・(^^;
+   g=((RGBQUAD*)pSource)-&gt;rgbGreen;
+   b=((RGBQUAD*)pSource)-&gt;rgbBlue;
+   ((RGBQUAD*)pDest)-&gt;rgbRed=r+(((((RGBQUAD*)pDest)-&gt;rgbRed-r)*a)/255);
+   ((RGBQUAD*)pDest)-&gt;rgbGreen=g+(((((RGBQUAD*)pDest)-&gt;rgbGreen-g)*a)/255);
+   ((RGBQUAD*)pDest)-&gt;rgbBlue=b+(((((RGBQUAD*)pDest)-&gt;rgbBlue-b)*a)/255);
+  }
+ }
+}</PRE>
+  <P>あくまでサンプルなので非常に遅いです。ご参考程度に。(^^;</P>
+  <P><A NAME="Q9"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <H3>[Q9]</H3>
+  <P>5000x5000 の大きな画像が読み込めません。</P>
+  <H3>[A9]</H3>
+  <P>Win95/98 の仕様です。(^^;;</P>
+  <P>GLDPNG は画像データの読み書きは TBitmap を使います。TBitmap はピクセルデータをメモリマップで持っていて
+  CreateDIBSection を使用してビットマップハンドルを作成しています。ですがこのような方法では大きすぎる画像では失敗してしまうためです。</P>
+  <P>なおWindows2000(NT4も大丈夫だと思いますが・・)ではこの様な問題は起きません。</P>
+  <P><A NAME="Q10"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <H3>[Q10]</H3>
+  <P>WWW ブラウザ上で GLDPNG で作成した PNG 画像を使いましたが Macなどの
+  Windows 以外の環境で見ると色が少し変になるんですが。</P>
+  <H3>[A10]</H3>
+  <P>ガンマ値の設定がされていないためです。GLDPNG は ver 3.4 から標準ではガンマ値を
+  0．45455 に設定しております。なお、あくまで Windows 環境の目安値ですので、特殊な環境の方は環境にあわせたガンマ値を設定する必要があります。</P>
+  <P><A NAME="Q11"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <H3>[Q11]</H3>
+  <P>カイリックスには対応しますか？または移植予定は？</P>
+  <H3>[A11]</H3>
+  <P>カイリックス版を出す予定はありませんし PNG は標準で使えますので必要ないでしょう。</P>
+  <P><A NAME="Q12"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <H3>[Q12]</H3>
+  <P>IE5上で GLDPNG で作成した PNG 画像を使いましたが透過されず表示されます。</P>
+  <H3>[A12]</H3>
+  <P>IE5 などのアプリケーション側が PNG の表示に関して完全にサポートしていないためです。</P>
+  <P><A NAME="Q13"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></P>
+  <P></P>
+  <H3>[Q13]</H3>
+  <P>GLDPNG とは関係ないのですが、TBitmap で Index 指定でパレット色を取りたいのですが・・・</P>
+  <H3>[A13]</H3>
+  <P>付属の SFunc.pas に GetPaletteColor という関数がありますのでそれで使用してください。</P>
+  <PRE>(例)
+  // パレットIndex10の色を取得
+  cor:=GetPaletteColor(bitmap.Palette,10);</PRE>
+  <P><A NAME="Q14"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE SIZE="3"></BLOCKQUOTE>
+</BODY>
+</HTML>

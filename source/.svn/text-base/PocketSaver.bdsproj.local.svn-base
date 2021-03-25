@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2004/12/21 08:38:36.640.pas,F:\Documents and Settings\toby\My Documents\Borland Studio Projects\Unit1.pas=T:\home\Project\delphi\PocketSaver\PocketSaver\source\MainFormUnit.pas</Transaction>
+    <Transaction>2004/12/21 08:38:36.656.dfm,F:\Documents and Settings\toby\My Documents\Borland Studio Projects\Unit1.dfm=T:\home\Project\delphi\PocketSaver\PocketSaver\source\MainFormUnit.dfm</Transaction>
+    <Transaction>2004/12/23 00:51:16.578.pas,T:\home\Project\delphi\PocketSaver\PocketSaver\source\Unit2.pas=T:\home\Project\delphi\PocketSaver\PocketSaver\source\ImageFormUnit.pas</Transaction>
+    <Transaction>2004/12/23 00:51:16.578.dfm,T:\home\Project\delphi\PocketSaver\PocketSaver\source\Unit2.dfm=T:\home\Project\delphi\PocketSaver\PocketSaver\source\ImageFormUnit.dfm</Transaction>
+    <Transaction>2004/12/23 09:24:16.984.pas,T:\home\Project\delphi\PocketSaver\PocketSaver\source\Unit1.pas=T:\home\Project\delphi\PocketSaver\PocketSaver\source\VCLUtilsUnit.pas</Transaction>
+    <Transaction>2004/12/23 10:13:26.546.pas,T:\home\Project\delphi\PocketSaver\PocketSaver\source\ImageFormUnit.pas=</Transaction>
+    <Transaction>2004/12/23 10:13:26.546.dfm,T:\home\Project\delphi\PocketSaver\PocketSaver\source\ImageFormUnit.dfm=</Transaction>
+  </Transactions>
+</BorlandProject>

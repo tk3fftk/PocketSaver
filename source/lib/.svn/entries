@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="2"
+   name=""
+   committed-date="2004-12-23T23:12:34.484375Z"
+   url="file:///T:/home/SVN/PocketSaver/trunk/source/lib"
+   last-author="toby"
+   kind="dir"
+   uuid="f5fc19ef-0d3e-4843-a5d8-80f92dcd1c0c"
+   revision="4"/>
+<entry
+   name="__history"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="HeapChecker.pas"
+   text-time="2005-02-10T23:51:25.906250Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="4fa22b78888b78e0f7e9633225a84641"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.484375Z"/>
+<entry
+   committed-rev="1"
+   name="gifimage.pas"
+   text-time="2005-02-10T23:51:25.906250Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="47326318f6a2403f621be4cef274cff7"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.546875Z"/>
+<entry
+   name="GLDPNG"
+   kind="dir"/>
+</wc-entries>

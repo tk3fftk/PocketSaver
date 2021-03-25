@@ -1,0 +1,730 @@
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="Adobe PageMill 2.0J Win">
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
+  <TITLE>GLDPNG ver 3.4 クラスリファレンス</TITLE>
+</HEAD>
+<BODY BGCOLOR="#ffffff" TEXT="#404040">
+
+<BLOCKQUOTE>
+  <H2><CENTER><HR NOSHADE SIZE="5">GLDPNG ver 3.4 クラスリファレンス<HR 
+  NOSHADE SIZE="5"></CENTER></H2>
+  <H2>★目次</H2>
+  <BLOCKQUOTE>
+    <P><A HREF="#method"><B>メソッド</B></A></P>
+    <UL>
+      <LI><A HREF="#AlphaBitmapAssign">AlphaBitmapAssign</A>
+      <LI><A HREF="#AlphaBitmapAssignTo">AlphaBitmapAssignTo</A>
+      <LI><A HREF="#Assign">Assign</A>
+      <LI><A HREF="#FreeAlphaBitmap">FreeAlphaBitmap</A>
+      <LI><A HREF="#LoadFromClipboardFormat">LoadFromClipboardFormat</A>
+      <LI><A HREF="#LoadFromFile">LoadFromFile</A>
+      <LI><A HREF="#LoadFromStream">LoadFromStream</A>
+      <LI><A HREF="#SaveToClipboardFormat">SaveToClipboardFormat</A>
+      <LI><A HREF="#SaveToFile">SaveToFile</A>
+      <LI><A HREF="#SaveToStream">SaveToStream</A>
+    </UL>
+    <P><A HREF="#property"><B>プロパティ</B></A></P>
+    <UL>
+      <LI><A HREF="#AlphaBitmap">AlphaBitmap</A>
+      <LI><A HREF="#AlphaChannel">AlphaChannel</A>
+      <LI><A HREF="#BGColor">BGColor</A>
+      <LI><A HREF="#Chromaticities">Chromaticities</A>
+      <LI><A HREF="#CompressLevel">CompressLevel</A>
+      <LI><A HREF="#GrayScale">GrayScale</A>
+      <LI><A HREF="#FilterType">FilterType</A>
+      <LI><A HREF="#Gamma">Gamma</A>
+      <LI><A HREF="#GIFExtension">GIFExtension</A>
+      <LI><A HREF="#HeightSpecific">HeightSpecific</A>
+      <LI><A HREF="#IDATSize">IDATSize</A>
+      <LI><A HREF="#Image">Image</A>
+      <LI><A HREF="#InterlaceType">InterlaceType</A>
+      <LI><A HREF="#MacBinary">MacBinary</A>
+      <LI><A HREF="#NowTime">NowTime</A>
+      <LI><A HREF="#OriginalBitCount">OriginalBitCount</A>
+      <LI><A HREF="#Password">Password</A>
+      <LI><A HREF="#Read16Bit">Read16Bit</A>
+      <LI><A HREF="#ShiftRGB">ShiftRGB</A>
+      <LI><A HREF="#Text">Text</A>
+      <LI><A HREF="#Time">Time</A>
+      <LI><A HREF="#TransColor">TransColor</A>
+      <LI><A HREF="#UnitSpecifier">UnitSpecifier</A>
+      <LI><A HREF="#WidthSpecific">WidthSpecific</A>
+    </UL>
+    <P><A HREF="#event"><B>イベント</B></A></P>
+    <UL>
+      <LI><A HREF="#OnDecode">OnDecode</A>
+      <LI><A HREF="#OnEncode">OnEncode</A>
+      <LI><A HREF="#OnPassword">OnPassword</A>
+    </UL>
+    <P><A HREF="#type"><B>関連定義</B></A></P>
+    <UL>
+      <LI><A HREF="#TGLDPNGDECodeEvent">TGLDPNGDECodeEvent</A>
+      <LI><A HREF="#TGLDPNGPasswordEvent">TGLDPNGPasswordEvent</A>
+      <LI><A HREF="#TPNGChromaticities">TPNGChromaticities</A>
+      <LI><A HREF="#TPNGGIFExtension">TPNGGIFExtension</A>
+      <LI><A HREF="#TPNGTime">TPNGTime</A>
+    </UL>
+  </BLOCKQUOTE>
+  <P>(注意)</P>
+  <P>○ここで説明されている以外のクラスメンバー(TGraphic メンバー)は Delphi
+  のヘルプを参考にしてください。また内部で使用しているクラスについての説明はありません。</P>
+  <P>○説明文で出てくる「グラフィッククラス」とは、現在のバージョンでは <B>TBitmap
+  </B>です。それ以外のグラフィッククラスは対象外となります。</P>
+  <P>○プロパティ説明で出てくる <B>[Load]</B> や <B>[Save]</B> は、画像データの読み書き時のこのプロパティをどのように内部で使われるかが書かれております。</P>
+  <P>○すべての説明で「読み込み」と書かれているのは PNG フォーマットの画像データを読み込むことで、「書き込み」と書かれている場合は画像データを
+  PNG フォーマットで書き込むことを示します。</P>
+  <P>○変な英語で書かれた名前がありますが気にしないでください。(^^;;</P>
+  <H3>TGLDPNGの継承図(？)</H3>
+  <P>TObject - TPersistent - TGraphic - TGLDPNG</P>
+  <P><A NAME="method"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE></P>
+  <H2>■メソッド</H2>
+  <P><A NAME="Assign"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞Assign</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> procedure Assign(source: TPersistent);</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>source で指定したグラフィッククラスをコピーします。なお、イメージやアルファチャンネルのリンクは<B>そのままコピー</B>します。</P>
+  <P><B>[使用例]</B></P>
+  <P>TGLDPNG クラスを作り、そこに C ドライブにある test.png ファイルを読み込み
+  Image1 という名前の TImage コンポーネントにコピーします。</P>
+  <PRE><B>var</B>
+ png: TGLDPNG;
+
+<B>begin</B>
+ png:=TGLDPNG.Create;
+ <B>try</B>
+  png.LoadFromFile('c:\test.png');
+  Image1.Picture.Assign(png);
+ <B>finally</B>
+  png.Free;
+ <B>end;</B>
+<B>end;</B></PRE>
+  <P><A NAME="LoadFromStream"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞LoadFromStream</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> procedure LoadFromStream(Stream: TStream);</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>Stream で指定されたストリームクラスから PNG データを読み込みます。この時、<A
+  HREF="#Image">Image</A> プロパティにグラフィッククラスが指定されている場合、<A
+  HREF="#Image">Image</A> プロパティのグラフィッククラスに読み込みます。もし
+  <A HREF="#Image">Image</A> プロパティが指定されていない(=nil)場合は、TGLDPNG
+  が内部で保持しているビットマップに読み込みます。</P>
+  <P>通常、ファイルからの読み込みは <A HREF="#LoadFromFile">LoadFromFile</A>
+  を使ってください。<A HREF="#LoadFromFile">LoadFromFile</A> は、ファイルストリームを作成して
+  LoadFromStream を呼び出しています。</P>
+  <P><A NAME="LoadFromFile"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞LoadFromFile</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> procedure LoadFromFile(const filename: string);</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>filename で指定したファイルから読み込みます。</P>
+  <P>LoadFromFile は、指定ファイルのファイルストリームを作成して <A HREF=
+  "#LoadFromStream">LoadFromStream</A> を呼び出しているだけです。</P>
+  <P><B>[使用例]</B></P>
+  <P>TGLDPNG クラスを作り、そこに C ドライブにある test.png ファイルを読み込み
+  Image1 という名前の TImage コンポーネントにコピーします。</P>
+  <PRE><B>var</B>
+ png: TGLDPNG;
+
+<B>begin</B>
+ png:=TGLDPNG.Create;
+ <B>try</B>
+  png.LoadFromFile('c:\test.png');
+  Image1.Picture.Assign(png);
+ <B>finally</B>
+  png.Free;
+ <B>end;</B>
+<B>end;</B></PRE>
+  <P><A NAME="SaveToStream"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞SaveToStream</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> procedure SaveToStream(Stream: TStream);</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>指定されているストリームに PNG データを書き込みます。この時、<A HREF=
+  "#Image">Image</A> プロパティにグラフィッククラスが指定されている場合、<A
+  HREF="#Image">Image</A> プロパティのビットマップを書き込みます。もし <A
+  HREF="#Image">Image</A> プロパティが指定されていない(=nil)場合は、TGLDPNG
+  が保持しているビットマップを書き込みます。</P>
+  <P>通常、ファイルへの書き込みは <A HREF="#SaveToFile">SaveToFile</A> を使ってください。<A
+  HREF="#SaveToFile">SaveToFile</A> は、ファイルストリームを作成して SaveToStream
+  を呼び出しています。</P>
+  <P><A NAME="SaveToFile"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞SaveToFile</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> procedure SaveToFile(const filename: string);</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>filename で指定したファイルへ書き込みます。</P>
+  <P>SaveToFile は、指定ファイルのファイルストリームを作成して <A HREF="#SaveToStream">SaveToStream</A>
+  を呼び出しているだけです。</P>
+  <P><B>[使用例]</B></P>
+  <P>TGLDPNG クラスを作り、C ドライブに test.png ファイルを作り、Image1 という名前の
+  TImage コンポーネントの画像を PNGフォーマットで書き込みます。</P>
+  <PRE><B>var</B>
+ png: TGLDPNG;
+
+<B>begin</B>
+ png:=TGLDPNG.Create;
+ <B>try</B>
+  png.Assign(Image1.Picture.Graphic);
+  png.SaveToFile('c:\test.png');
+ <B>finally</B>
+  png.Free;
+ <B>end;</B>
+<B>end;</B></PRE>
+  <P><A NAME="LoadFromClipboardFormat"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞LoadFromClipboardFormat</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> procedure LoadFromClipboardFormat(AFormat: Word;</B>
+<B>                                   AData: THandle;</B>
+<B>                                   APalette: HPALETTE);</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>クリップボードから画像データを読み込みます。ただし、読み込めるデータは
+  TBitmap と同じです。PNG フォーマット形式は読み込めません。</P>
+  <P><A NAME="SaveToClipboardFormat"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞SaveToClipboardFormat</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> procedure SaveToClipboardFormat(var Format: Word;</B>
+<B>                                 var Data: THandle;</B>
+<B>                                 var APalette: HPALETTE);</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>クリップボードに画像データを書き込みます。ただし、PNG フォーマット形式ではなく
+  Windows 標準の Bitmap(DIB) 形式で書き込みます。</P>
+  <P><A NAME="AlphaBitmapAssign"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞AlphaBitmapAssign</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B>  procedure AlphaBitmapAssign(source: TGraphic);</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>内部アルファチャンネルのビットマップに指定のグラフィッククラスを書き込みます。</P>
+  <P><A NAME="AlphaBitmapAssignTo"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞AlphaBitmapAssignTo</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B>  function AlphaBitmapAssignTo(dest: TGraphic): boolean;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>内部アルファチャンネルのビットマップを指定グラフィッククラスに書き込みます。内部に存在すれば
+  TRUE 、無ければ FALSE を返します。</P>
+  <P>dest で nil を指定した場合は内部の存在の有無のみを返します。</P>
+  <P><B>[重要]</B></P>
+  <P>ver 3.3 から <FONT COLOR="#ff0000">GetAlphaBitmap は　AlphaBitmapAssignTo
+  に改名されています。</FONT></P>
+  <P><A NAME="FreeAlphaBitmap"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞FreeAlphaBitmap</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> procedure FreeAlphaBitmap;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>内部アルファチャンネルのビットマップを破棄します。</P>
+  <P><A NAME="property"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2>■プロパティ</H2>
+  <P><A NAME="Image"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞Image</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property Image: TGLDBmp;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>リンクするビットマップクラスを指定します。この値が nil の場合は内部ビットマップが対象になります。</P>
+  <P>このプロパティと <A HREF="#AlphaBitmap">AlphaBitmap</A> プロパティは主に同じ設定の連続読み込みや書き込みを行う場合に用いると便利です。</P>
+  <P><B>[Load]</B></P>
+  <P>このプロパティが nil 以外の場合、内部のビットマップではなく指定されたビットマップクラスに画像を読み込みます。</P>
+  <P><B>[Save]</B></P>
+  <P>このプロパティが nil 以外の場合、内部のビットマップではなく指定されたビットマップクラスの画像を保存対象にします。</P>
+  <P><A NAME="AlphaBitmap"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞AlphaBitmap</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property AlphaBitmap: TGLDBmp;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>リンクするアルファチャンネルのビットマップクラスを指定します。この値が
+  nil の場合は内部アルファチャンネルビットマップが対象になります。</P>
+  <P>このプロパティと <A HREF="#Image">Image</A> プロパティは主に同じ設定の連続読み込みや書き込みを行う場合に用いると便利です。</P>
+  <P><B>[Load]</B></P>
+  <P>このプロパティが nil 以外の場合、内部のビットマップではなく指定されたビットマップクラスにアルファチャンネルを読み込みます。</P>
+  <P><B>[Save]</B></P>
+  <P>このプロパティが nil 以外の場合、内部のビットマップではなく指定されたビットマップクラスのアルファチャンネルを保存対象にします。</P>
+  <P><A NAME="CompressLevel"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞CompressLevel</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property CompressLevel: integer;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>ZLIB 圧縮設定です。0 から 9 または -1 が指定できます。0 で 圧縮なし、1
+  で速度最優先、9 で圧縮率最優先になります。-1 で ZLIB の標準設定になります。</P>
+  <P>デフォルトでは gplDefault(-1) となっています。</P>
+  <P><B>[注意]</B></P>
+  <P>ver 3.4 から integer 型に変更になっていますので旧バージョンからの移行では修正が必要な場合があります。</P>
+  <P><B>[Load]</B></P>
+  <P>使用しません。</P>
+  <P><B>[Save]</B></P>
+  <UL>
+    <LI>gplNone(0)　・・・　圧縮しません。
+    <LI>gplDefault(-1)　・・・　標準圧縮します。
+    <LI>gplSpeed(1)　・・・　圧縮速度を優先しますが圧縮率低下します。
+    <LI>splBest(9)　・・・　出来る限りの最高の圧縮を行います。
+  </UL>
+  <P>ちなみに gplBest が一番遅いですが圧縮率は一番高いです。</P>
+  <P><A NAME="FilterType"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞FilterType</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B>property FilterType: TGLDPNGFilterType;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>フィルタ設定です。デフォルトは gpfNone です。</P>
+  <P><B>[Load]</B></P>
+  <P>使用しません。</P>
+  <P><B>[Save]</B></P>
+  <UL>
+    <LI>gpfJust　・・・　標準フィルタから最適なフィルタを見つけて使います。
+    <LI>gpfNone　・・・　フィルタを使用しません。
+    <LI>gpfSub　・・・　Subフィルタのみを使用します。
+    <LI>gpfUp　・・・　Upフィルタのみを使用します。
+    <LI>gpfAvg　・・・　Avgフィルタのみを使用します。
+    <LI>gpfPaeth　・・・　Paethフィルタのみを使用します。
+  </UL>
+  <P>通常は gpfJust をお使いください。ただし、gpfJust はフィルタ比較のため少々時間がかかります。</P>
+  <P><A NAME="IDATSize"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞IDATSize</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property IDATSize: integer;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>IDAT チャンクの１つの最大バイト数です。通常は使用しないでください。ディフォルトでは
+  32768 です。</P>
+  <P><B>[Load]</B></P>
+  <P>使用しません。</P>
+  <P><B>[Save]</B></P>
+  <P>IDAT チャンクを指定の大きさで区切ります。</P>
+  <P><A NAME="InterlaceType"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞InterlaceType</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property InterlaceType: TGLDPNGInterlaceType;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>インタレース情報です。</P>
+  <UL>
+    <LI>gptNone　・・・　インタレースは使用しません。
+    <LI>gptAdam7　・・・　標準の７パス式のインタレース使用。
+  </UL>
+  <P>ディフォルトでは gptNone です。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだデータの使用していたインタレース情報が入ります。</P>
+  <P><B>[Save]</B></P>
+  <P>設定されているインタレースで画像を保存します。</P>
+  <P><A NAME="GrayScale"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞GrayScale</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property GrayScale: boolean;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>画像のグレイスケール化の有無です。ディフォルトでは FALSE です。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだ画像がグレイスケールかどうかが入ります。TRUE の場合はグレイスケール、FALSE
+  の場合はカラーとなります。</P>
+  <P><B>[Save]</B></P>
+  <P>TRUE の場合は画像をグレイスケールに変換してから保存します。FALSE の場合はカラーのまま保存します。</P>
+  <P><A NAME="AlphaChannel"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞AlphaChannel</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property AlphaChannel: boolean;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>アルファチャンネルの有無です。ディフォルトでは FALSE です。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだ画像にアルファチャンネルの有無が入ります。TRUE の場合はアルファチャンネルあり、FALSE
+  の場合はアルファチャンネルなしとなります。</P>
+  <P><B>[Save]</B></P>
+  <P>TRUE の場合は画像にアルファチャンネルを付加して保存します。FALSE の場合はそのまま保存します。</P>
+  <P>注意してほしいのは例え内部にあったりリンクされていても、このプロパティが
+  FALSE の場合は無視されます。</P>
+  <P><B>[重要]</B></P>
+  <P>保存時、アルファチャンネルとして保存されるビットマップは、</P>
+  <UL>
+    <LI>保存対象のビットマップと同じ幅(Width)と高さ(Height)
+    <LI>ピクセルビット数が８(PixelFormat=pf8bit)
+  </UL>
+  <P>上記の条件を満たしていないと無視されます。</P>
+  <P><A NAME="MacBinary"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞MacBinary</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property MacBinary: boolean; </B></PRE>
+  <P><B>[説明]</B></P>
+  <P>マックバイナリのチェックの有無です。ディフォルトでは TRUE です。</P>
+  <P><B>[Load]</B></P>
+  <P>TRUE の場合、読み込んだデータの先頭にマックバイナリがあるかどうかを調べてあれば削除します。FALSE
+  の場合は何もしません。</P>
+  <P><B>[Save]</B></P>
+  <P>何もしません。</P>
+  <P><A NAME="BGColor"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞BGColor</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property BGColor: COLORREF;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>背景色です。GLD_NONECOLOR(値：-1) なら背景色なしになります。ディフォルトでは　GLD_NONECOLOR
+  です。</P>
+  <P><B>[注意]</B></P>
+  <P>ver 3.4 から 1/16/256色画像のみ Index 指定がサポートされています。Index
+  指定の場合は、<FONT COLOR="#ff0000">Index 値に $1000000 を OR した値</FONT>になります。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだ画像の背景色が入ります。</P>
+  <P><B>[Save]</B></P>
+  <P>背景色としてこのプロパティで指定した色を使います。</P>
+  <P><A NAME="TransColor"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞TransColor</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property TransColor: COLORREF;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>透過色です。GLD_NONECOLOR(値：-1) なら透過色なしになります。ディフォルトでは　GLD_NONECOLOR
+  です。</P>
+  <P><B>[注意]</B></P>
+  <P>ver 3.4 から 1/16/256色画像のみ Index 指定がサポートされています。Index
+  指定の場合は、<FONT COLOR="#ff0000">Index 値に $1000000 を OR した値</FONT>になります。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだ画像の透過色が入ります。</P>
+  <P><B>[Save]</B></P>
+  <P>書き込み時は透過色としてこのプロパティの指定の色を使います。</P>
+  <P><B>[重要]</B></P>
+  <P>アルファチャンネルがある場合は必ず無視されます。</P>
+  <P>また、プロパティに値を代入した場合、<B><FONT COLOR="#ff0000">対象ビットマップの</FONT></B><FONT
+   COLOR="#ff0000">透過色にも設定されます。</FONT></P>
+  <P><A NAME="Text"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞Text</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B>property Text: string;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>コメントです。''でコメントなしです。ディフォルトではコメントなしです。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだ<B>すべての</B>コメントデータが連結して入ります。</P>
+  <P><B>[Save]</B></P>
+  <P>このプロパティの文字列をコメントとして書き込みます。</P>
+  <P><A NAME="Gamma"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞Gamma</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property Gamma: double;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>ガンマです。PNG仕様書ではこの値はファイルガンマとなっています。0.0 でガンマなしです。ディフォルトでは
+  0.45455 です。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだ画像のガンマが入ります。</P>
+  <P><B>[Save]</B></P>
+  <P>書き込み時はこのプロパティの値をガンマとして書き込みます。このプロパティは<FONT
+   COLOR="#ff0000">ガンマというのがわからない場合は絶対に設定しないでください。</FONT></P>
+  <P><B>[補足]</B></P>
+  <P>Windows 環境での標準的なファイルガンマは 0.45455 なっています。ですがビデオカードやディスプレイなどによって違う場合がありますのであくまで参考値としてお考えください。</P>
+  <P>詳しい説明は PNG フォーマットの仕様書(Appendix: Gamma Tutorial)をご覧ください。</P>
+  <P><A NAME="ShiftRGB"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞ShiftRGB</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property ShiftRGB: integer;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>色要素の重要なビット数です。0 で最大ビット数まで有効です。ディフォルトでは
+  0 です。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだ画像に各要素の重要ビット数指定がある場合だけ値が入ります。</P>
+  <P><B>[Save]</B></P>
+  <P>書き込み時は、このプロパティの値を有効ビット数として書き込みます。通常は設定しないでください。</P>
+  <P><B>[補足]</B></P>
+  <P>このプロパティ値は、画像状態によって値の捉え方が違います。以下が説明です。なお、説明では最下位のビット番号を
+  0 として説明しております。</P>
+  <P>(1)グレイスケール画像の場合は、0～7 ビットがグレイスケール段階、8～15
+  ビットがアルファチャンネルとなっています。</P>
+  <P>(2)カラー画像の場合は、0～7 ビットが赤要素、8～15 ビットが緑要素、16～23
+  ビットが青要素、24～31 ビットがアルファチャンネルとなっています。</P>
+  <BLOCKQUOTE>
+    <PRE>(例)
+<FONT COLOR="#0000a0">//カラー画像の場合の各有効ビット数を抜き出し</FONT>
+<FONT COLOR="#0000a0">r:=ShiftRGB and $FF;</FONT>
+<FONT COLOR="#0000a0">g:=(ShiftRGB and $FF00) shr 8;</FONT>
+<FONT COLOR="#0000a0">b:=(ShiftRGB and $FF0000) shr 16;</FONT>
+<FONT COLOR="#0000a0">if (r=5) and (g=6) and (b=5) then ShowMessage('6万色画像です');</FONT>
+<FONT COLOR="#0000a0">if (r=5) and (g=5) and (b=5) then ShowMessage('3万色画像です');</FONT></PRE>
+  </BLOCKQUOTE>
+  <P>有効ビット数とは最大ビット番号からの下位に向かって数えて有効なビット数です。ちょっとわかりにくいかもしれません。例えば
+  8bitで $6F という場合で有効ビット数が 5 の場合、有効な値は $6F ではなく
+  $68 であるということです。つまり下位3ビットは無効となり、<B>無効になったビットはシフトして消さないといけません。</B>ですので
+  $68 からさらに3ビット右シフトして $B ということになります。</P>
+  <P>PNG では 6 万色(16bit)や 3 万色(15bit)の画像はすべて<B>フルカラー(24bit)</B>にしなくていけないのです。ですので、そのような画像を読み込み時に復元してもらうためにこの様なデータがあるわけです。なお、<FONT
+   COLOR="#ff0000">ver 3.3からは自動的に変換する機能が追加されましたので特殊な場合以外は設定不要になりました。</FONT></P>
+  <P><A NAME="OriginalBitCount"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞OriginalBitCount</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property OriginalBitCount: integer; </B></PRE>
+  <P><B>[説明]</B></P>
+  <P>読み込んだ画像の本当の1ピクセルのビット数です。</P>
+  <P>※読み込みのみのプロパティです。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだ画像の本当の1ピクセルのビット数を代入します。</P>
+  <P><B>[Save]</B></P>
+  <P>使いません。</P>
+  <P><A NAME="UnitSpecifier"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞UnitSpecifier</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property UnitSpecifier: TGLDPNGUnitSpecifier;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>画像の解像度の識別情報です。</P>
+  <UL>
+    <LI>gpuAspect　・・・　アスペクト比
+    <LI>gpuMeter　・・・　1ピクセルのメートル数
+    <LI>gpuInch　・・・　1ピクセルのインチ数
+  </UL>
+  <P>この単位は <A HREF="#HeightSpecific">WidthSpecific</A> プロパティと　<A
+  HREF="#HeightSpecific">HeightSpecific</A> プロパティで使われます。ディフォルトは
+  gpuAspect です。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだ画像の解像度の識別情報が代入されます。</P>
+  <P><B>[Save]</B></P>
+  <P>このプロパティの識別情報で画像解像度を保存します。</P>
+  <P><A NAME="WidthSpecific"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞WidthSpecific</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property WidthSpecific: integer;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>画像の解像度の横の値です。<A HREF="#UnitSpecifier">UnitSpecifier</A>
+  プロパティで指定した識別情報が用いられます。なお、値が 0 の場合は指定なしとなります。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだ画像解像度の横の値が入ります。</P>
+  <P><B>[Save]</B></P>
+  <P>書き込み時は、<A HREF="#UnitSpecifier">UnitSpecifier</A> プロパティの画像解像度で書き込みます。</P>
+  <P><A NAME="HeightSpecific"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞HeightSpecific</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property HeightSpecific: integer;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>画像の解像度の縦の値です。<A HREF="#UnitSpecifier">UnitSpecifier</A>
+  プロパティで指定した識別情報が用いられます。なお、値が 0 の場合は指定なしとなります。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだ画像解像度の縦の値が入ります。</P>
+  <P><B>[Save]</B></P>
+  <P>書き込み時は、<A HREF="#UnitSpecifier">UnitSpecifier</A> プロパティの画像解像度で書き込みます。</P>
+  <P><A NAME="Password"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞Password</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property Password: string;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>画像データの暗号化・復号化時に用いるパスワードです。暗号・復号をする場合にだけ設定の必要があり、通常は設定しなくでください。<BR>
+  読み込み前に代入しておくと <A HREF="#OnPassword">OnPassword</A> が発生しません。<BR>
+  また画像データに暗号をかける場合、書き込み前に必ずパスワードと <A HREF=
+  "#OnEncode">OnEncode</A> イベントを設定する必要があります。</P>
+  <P><B>[Load]</B></P>
+  <P>画像データが暗号化されている場合、復号化します。</P>
+  <P><B>[Save]</B></P>
+  <P>指定がされていれば暗号化します。</P>
+  <P><A NAME="NowTime"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞NowTime</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property NowTime: boolean;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>現在の時刻の保存の有無です。ディフォルトでは　TRUE です。</P>
+  <P><B>[Load]</B></P>
+  <P>使用しません。</P>
+  <P><B>[Save]</B></P>
+  <P>書き込み時は、このプロパティが TRUE の場合現時刻を書き込みます。FALSE
+  の場合は　<A HREF="#Time">Time</A> プロパティで指定した値が保存されます。</P>
+  <P><A NAME="Time"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞Time</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property Time: <A HREF="#TPNGTime">TPNGTime</A>;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>画像の最終更新時刻です。なお、時間は日本時間ではなくUTC(国際標準時間)です。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだデータが入ります。なお、Year が 0 なら画像データに時間指定がありません。(もしそれでも不安の場合は
+  Month も 0 かどうかを調べると良いでしょう)</P>
+  <P><B>[Save]</B></P>
+  <P>指定したデータを書き込みます。</P>
+  <P><B>[補足]</B></P>
+  <P>国際標準時間と日本時間の誤差は +9 時間です。</P>
+  <P><A NAME="Chromaticities"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞Chromaticities</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property Chromaticities: <A HREF="#TPNGChromaticities">TPNGChromaticities</A>;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>画像の赤緑青の 1931 CIE x,y 色度、および関連するホワイト点情報です。もし<FONT
+   COLOR="#ff0000">色度がわからない場合は絶対に使用しないでください。</FONT></P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだデータが入ります。</P>
+  <P><B>[Save]</B></P>
+  <P>指定したデータを書き込みます。</P>
+  <P><B>[補足]</B></P>
+  <P>色度についてはPNGフォーマットの仕様書(Appendix: Color Tutorial)をご覧ください。</P>
+  <P><A NAME="GIFExtension"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞GIFExtension</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property GIFExtension: <A HREF="#TPNGGIFExtension">TPNGGIFExtension</A>;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>GIFのグラフィック制御拡張データです。通常は使用しませんがGIFフォーマットとの相互変換の場合には使用するようにしてください。これによりデータの劣化を最小にすることが出来ます。</P>
+  <P><B>[Load]</B></P>
+  <P>読み込んだデータが入ります。</P>
+  <P><B>[Save]</B></P>
+  <P>設定されているデータを書き込みます。</P>
+  <P><A NAME="Read16Bit"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞Read16Bit</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B> property Read16Bit: boolean;</B></PRE>
+  <P><B>[説明]</B></P>
+  <P>16ビットから24ビット画像変換の有無です。ディフォルトは FALSE です。</P>
+  <P><B>[Load]</B></P>
+  <P>このプロパティの値が TRUE で読み込んだ画像が15ビット(3万色)や16ビット(6万色)の場合<B>そのまま</B>読み込みます。FALSE
+  の場合は24ビット(フルカラー)に変換されます。</P>
+  <P><B>[Save]</B></P>
+  <P>使用しません。</P>
+  <P><A NAME="event"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2>■イベント</H2>
+  <P><A NAME="OnPassword"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞OnPassword</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B><FONT COLOR="#0080c0"> </FONT>property OnPassword: <A HREF="#TGLDPNGPasswordEvent">TGLDPNGPasswordEvent</A>;</B></PRE>
+  <P><B>[引数]</B></P>
+  <UL>
+    <LI>sender はイベント発生させたクラス
+    <LI>password は指定するパスワード
+  </UL>
+  <P><B>[説明]</B></P>
+  <P>読み込み時、画像に暗号がかけられている場合で <A HREF="#Password">Password</A>
+  プロパティにパスワードが指定されていない時に呼び出されるイベントです。</P>
+  <P>password 引数にパスワードを指定してください。このイベントはユーザーにパスワードを入力させる場合に使うと便利です。</P>
+  <P><B>[補足]</B></P>
+  <P>通常は <A HREF="#Password">Password</A> プロパティに設定してから読み込みます。</P>
+  <P><A NAME="OnEncode"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞OnEncode</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B><FONT COLOR="#0080c0"> </FONT>property OnEncode: <A HREF="#TGLDPNGDECodeEvent">TGLDPNGDECodeEvent</A>;</B></PRE>
+  <P><B>[引数]</B></P>
+  <UL>
+    <LI>sender はイベント発生させたクラス
+    <LI>pbuf は画像データのライン先頭ポインタ
+    <LI>buflen はデータの総バイト数
+    <LI>lineno は現在の呼び出し回数
+    <LI>password はパスワード
+  </UL>
+  <P><B>[説明]</B></P>
+  <P>書き込み時のみ呼び出されるイベントです。</P>
+  <P>画像に暗号をかける場合、GLDPNG は１ライン毎にこのイベントを呼び出し<B>画像データの暗号処理をおしつけてきます。</B>GLDPNG
+  自身では暗号プログラムは組み込まれていないためです。</P>
+  <P>なお、Password プロパティが空の場合、暗号化されないためこのイベントは呼び出されません。</P>
+  <P><B>[重要]</B></P>
+  <P>OnEncode イベントは <A HREF="#OnDecode">OnDecode</A> イベントと同じ暗号プロセスを使わなくてはいけません。</P>
+  <P><A NAME="OnDecode"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞OnDecode</FONT></H2>
+  <P><B>[定義]</B></P>
+  <PRE><B><FONT COLOR="#0080c0"> </FONT>property OnDecode: <A HREF="#TGLDPNGDECodeEvent">TGLDPNGDECodeEvent</A>;</B></PRE>
+  <P><B>[引数]</B></P>
+  <UL>
+    <LI>sender はイベント発生させたクラス
+    <LI>pbuf は画像データのライン先頭ポインタ
+    <LI>buflen はデータの総バイト数
+    <LI>lineno は現在の呼び出し回数
+    <LI>password はパスワード
+  </UL>
+  <P><B>[説明]</B></P>
+  <P>読み込み時のみ呼び出されるイベントです。</P>
+  <P>画像に暗号がかけられている場合、GLDPNG は１ライン毎にこのイベントを呼び出し<B>画像データの復号処理をおしつけてきます。</B>GLDPNG
+  自身では暗号プログラムは組み込まれていないためです。</P>
+  <P><B>[重要]</B></P>
+  <P>OnDecode イベントは <A HREF="#OnEncode">OnEncode</A> イベントと同じ暗号プロセスを使わなくてはいけません。</P>
+  <P><A NAME="type"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2>■関連定義</H2>
+  <P><A NAME="TPNGTime"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞TPNGTime</FONT></H2>
+  <P><B>[定義ユニット]</B></P>
+  <P>GLDPNGStream</P>
+  <P><B>[定義]</B></P>
+  <PRE><B> PPNGTime=^TPNGTime;</B>
+<B> TPNGTime=packed record</B>
+<B>  Year:   Word;</B>
+<B>  Month:  byte;</B>
+<B>  Day:    byte;</B>
+<B>  Hour:   byte;</B>
+<B>  Minute: byte;</B>
+<B>  Second: byte;</B>
+<B> end;</B></PRE>
+  <P><B>[レコード]</B></P>
+  <UL>
+    <LI>Year は年(西暦)
+    <LI>Month は月
+    <LI>Day は日
+    <LI>Hour は時
+    <LI>Minute は分
+    <LI>Second は秒
+  </UL>
+  <P><B>[説明]</B></P>
+  <P>PNG で使われている時刻データで基準は国際標準時間(UTC)です。</P>
+  <P>なお、Year は必ず４桁でいれ、うるう年への変り目？(うるう秒)の時は Second
+  は 60 を入れます。</P>
+  <P><A NAME="TPNGChromaticities"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞TPNGChromaticities</FONT></H2>
+  <P><B>[定義ユニット]</B></P>
+  <P>GLDPNGStream</P>
+  <P><B>[定義]</B></P>
+  <PRE><B> PPNGChromaticities=^TPNGChromaticities;</B>
+<B> TPNGChromaticities=packed record</B>
+<B>  White_PX: DWORD;</B>
+<B>  White_PY: DWORD;</B>
+<B>  Red_X:    DWORD;</B>
+<B>  Red_Y:    DWORD;</B>
+<B>  Green_X:  DWORD;</B>
+<B>  Green_Y:  DWORD;</B>
+<B>  Blue_X:   DWORD;</B>
+<B>  Blue_Y:   DWORD;</B>
+<B> end;</B></PRE>
+  <P><B>[レコード]</B></P>
+  <UL>
+    <LI>White_PX はホワイト点のX
+    <LI>White_PY はホワイト点のY
+    <LI>Red_X CIE x,y色度の赤のx
+    <LI>Red_Y CIE x,y色度の赤のy
+    <LI>Green_X CIE x,y色度の緑のx
+    <LI>Green_Y CIE x,y色度の緑のy
+    <LI>Blue_X CIE x,y色度の青のx
+    <LI>Blue_Y CIE x,y色度の青のy
+  </UL>
+  <P><B>[説明]</B></P>
+  <P>CIE x,y色度とホワイト点のデータです。すべての値は<B>符号なしで 100000
+  倍</B>をして入れます。</P>
+  <P><A NAME="TPNGGIFExtension"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞TPNGGIFExtension</FONT></H2>
+  <P><B>[定義ユニット]</B></P>
+  <P>GLDPNGStream</P>
+  <P><B>[定義]</B></P>
+  <PRE><B> PPNGGIFExtension=^TPNGGIFExtension;</B>
+<B> TPNGGIFExtension=packed record</B>
+<B>  DisposalMethod: byte;</B>
+<B>  UserInputFlag:  byte;</B>
+<B>  DelayTime:      Word;</B>
+<B> end;</B></PRE>
+  <P><B>[レコード]</B></P>
+  <UL>
+    <LI>DisposalMethod は表示後の処理
+    <LI>UserInputFlag はユーザー入力の必要の有無
+    <LI>DelatTime は待機時間(100 ms単位)
+  </UL>
+  <P><B>[説明]</B></P>
+  <P>GIF フォーマットの拡張制御データです。PNG 自体では使われず相互変換用に定義されています。</P>
+  <P>詳しくは GIF フォーマットの仕様書をご覧ください。</P>
+  <P><A NAME="TGLDPNGDECodeEvent"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞TGLDPNGDECodeEvent</FONT></H2>
+  <P><B>[定義ユニット]</B></P>
+  <P>GLDPNG</P>
+  <P><B>[定義]</B></P>
+  <PRE><B> TGLDPNGDECodeEvent = </B>
+<B>  procedure (sender: TObject; pbuf: pbyte; buflen,lineno: integer; password: string);</B></PRE>
+  <P><B>[引数]</B></P>
+  <UL>
+    <LI>sender はイベント発生させたクラス
+    <LI>pbuf は画像データのライン先頭ポインタ
+    <LI>buflen はデータの総バイト数
+    <LI>lineno は現在の呼び出し回数
+    <LI>password はパスワード
+  </UL>
+  <P><B>[説明]</B></P>
+  <P><A HREF="#OnDecode">OnDecode</A> イベントと <A HREF="#OnEncode">OnEncode</A>
+  イベントの関数定義です。</P>
+  <P><A NAME="TGLDPNGPasswordEvent"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2><FONT COLOR="#800000">＞TGLDPNGPasswordEvent</FONT></H2>
+  <P><B>[定義ユニット]</B></P>
+  <P>GLDPNG</P>
+  <P><B>[定義]</B></P>
+  <PRE><B> TGLDPNGPasswordEvent =</B>
+<B>  procedure (sender: TObject; var password: string);</B></PRE>
+  <P><B>[引数]</B></P>
+  <UL>
+    <LI>sender はイベント発生させたクラス
+    <LI>password は指定するパスワード
+  </UL>
+  <P><B>[説明]</B></P>
+  <P><A HREF="#OnPassword">OnPassword</A> イベントの関数定義です。</P>
+  <P><HR ALIGN=LEFT NOSHADE></P>
+  <P><CENTER>(C)2000-2001 Copyright Tarquin All Rights Reserved.</CENTER></BLOCKQUOTE>
+</BODY>
+</HTML>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2004-12-23T16:36:26.796875Z"
+   url="file:///T:/home/SVN/PocketSaver/trunk/source/ModelSupport"
+   last-author="toby"
+   kind="dir"
+   uuid="f5fc19ef-0d3e-4843-a5d8-80f92dcd1c0c"
+   revision="4"/>
+<entry
+   name="Unit1"
+   kind="dir"/>
+<entry
+   name="HeapChecker"
+   kind="dir"/>
+<entry
+   name="VCLUtilUnit"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="デフォルト.txvpck"
+   text-time="2005-02-10T23:51:24.234375Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="9a722af81df560e3f456e9e72e7333c2"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:23.921875Z"/>
+<entry
+   name="VCLUtilsUnit"
+   kind="dir"/>
+<entry
+   name="ImageFormUnit"
+   kind="dir"/>
+<entry
+   name="MainFormUnit"
+   kind="dir"/>
+<entry
+   name="CameraAnalyzerUnit"
+   kind="dir"/>
+</wc-entries>

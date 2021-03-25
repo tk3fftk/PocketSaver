@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2004-12-23T16:36:26.796875Z"
+   url="file:///T:/home/SVN/PocketSaver/trunk/source/lib/GLDPNG/sample"
+   last-author="toby"
+   kind="dir"
+   uuid="f5fc19ef-0d3e-4843-a5d8-80f92dcd1c0c"
+   revision="4"/>
+<entry
+   committed-rev="1"
+   name="pngtest.cfg"
+   text-time="2005-02-10T23:51:24.921875Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="dc22358881144770c463546563ee2235"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.750000Z"/>
+<entry
+   committed-rev="1"
+   name="pngtest1.pas"
+   text-time="2005-02-10T23:51:24.921875Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="e4c5cd11905ef5a8fc2440f589d0fd9a"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.765625Z"/>
+<entry
+   committed-rev="1"
+   name="pngtest.dpr"
+   text-time="2005-02-10T23:51:24.937500Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="9e740ea9aac7f12b8325288d0651fcb4"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.781250Z"/>
+<entry
+   committed-rev="1"
+   name="pngtest2.pas"
+   text-time="2005-02-10T23:51:24.937500Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="83bdde41dac3cc419d18c0b6ff3c842b"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.812500Z"/>
+<entry
+   committed-rev="1"
+   name="pngtest1.dfm"
+   text-time="2005-02-10T23:51:25.062500Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="ed16625fc1228896255a3efb95b41aa5"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.828125Z"/>
+<entry
+   committed-rev="1"
+   name="pngtest.dof"
+   text-time="2005-02-10T23:51:25.062500Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="0163defb29474da92452948ffc058bb9"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.859375Z"/>
+<entry
+   committed-rev="1"
+   name="pngtest2.dfm"
+   text-time="2005-02-10T23:51:25.062500Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="9fe4b3eafb5de2f829578af55c1b86cb"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.875000Z"/>
+<entry
+   committed-rev="1"
+   name="pngtest.res"
+   text-time="2005-02-10T23:51:25.078125Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="9415399c26e63e1749e2cb621fe80cf1"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.906250Z"/>
+</wc-entries>

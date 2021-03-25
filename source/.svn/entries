@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="4"
+   name=""
+   committed-date="2005-02-13T06:36:05.324234Z"
+   url="file:///T:/home/SVN/PocketSaver/trunk/source"
+   last-author="toby"
+   kind="dir"
+   uuid="f5fc19ef-0d3e-4843-a5d8-80f92dcd1c0c"
+   revision="4"/>
+<entry
+   committed-rev="1"
+   name="CameraAnalyzerUnit.pas"
+   text-time="2005-02-10T23:51:26.078125Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="da8300de7e9823aaf6161f3e8b0cbf5f"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:23.531250Z"/>
+<entry
+   committed-rev="1"
+   name="PocketSaver.bdsproj.local"
+   text-time="2005-02-10T23:51:26.078125Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="703e376ffdae00c92f022ae729c5fef0"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:23.546875Z"/>
+<entry
+   committed-rev="1"
+   name="PocketSaver.cfg"
+   text-time="2005-02-10T23:51:26.078125Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="5673a6e6766e684e8576f34c38b78da4"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:23.562500Z"/>
+<entry
+   committed-rev="1"
+   name="icon00.edg"
+   text-time="2005-02-10T23:51:26.093750Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="6a9dec5234b22decafa882a4fc65aa09"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:23.578125Z"/>
+<entry
+   committed-rev="1"
+   name="icon01.edg"
+   text-time="2005-02-10T23:51:26.093750Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="fe38660c7c8751c2dfcbac7c0192b1b6"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:23.609375Z"/>
+<entry
+   committed-rev="1"
+   name="VCLUtilsUnit.pas"
+   text-time="2005-02-10T23:51:26.093750Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="bb5e9c50648ebc765e39e402a2abdfb5"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:23.625000Z"/>
+<entry
+   committed-rev="1"
+   name="PocketSaver.bdsproj"
+   text-time="2005-02-10T23:51:26.109375Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="5239f02664b0538abb82547fb108e835"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:23.656250Z"/>
+<entry
+   committed-rev="1"
+   name="MainFormUnit.pas"
+   text-time="2005-02-10T23:51:26.109375Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="4c2588a0755abc9f5c4f4229b77876d5"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:23.703125Z"/>
+<entry
+   name="ModelSupport"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="main.ico"
+   text-time="2005-02-10T23:51:26.125000Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="d878143183ad20bd18b2ec698c3e626c"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.250000Z"/>
+<entry
+   name="__history"
+   kind="dir"/>
+<entry
+   name="lib"
+   kind="dir"/>
+<entry
+   committed-rev="4"
+   name="PocketSaver.dpr"
+   text-time="2005-02-13T06:36:20.526483Z"
+   committed-date="2005-02-13T06:36:05.324234Z"
+   checksum="81c074b781ee40a909ee1a651d3518ed"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-13T06:36:20.417115Z"/>
+<entry
+   name="dcu"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="PocketSaver.identcache"
+   text-time="2005-02-10T23:51:26.125000Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="a5d546034fe9b64c94e4942f32451450"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.984375Z"/>
+<entry
+   committed-rev="4"
+   name="MainFormUnit.dfm"
+   text-time="2005-02-13T06:36:20.542108Z"
+   committed-date="2005-02-13T06:36:05.324234Z"
+   checksum="e1af311625d061b3b791b97c5f46a8a5"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-13T06:36:20.495235Z"/>
+<entry
+   committed-rev="1"
+   name="PocketSaver.res"
+   text-time="2005-02-10T23:51:26.140625Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="e38c1da4c93334377a1e773bcf9e433d"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:26.046875Z"/>
+</wc-entries>

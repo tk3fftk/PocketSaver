@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2004-12-23T16:36:26.796875Z"
+   url="file:///T:/home/SVN/PocketSaver/trunk/source/lib/GLDPNG"
+   last-author="toby"
+   kind="dir"
+   uuid="f5fc19ef-0d3e-4843-a5d8-80f92dcd1c0c"
+   revision="4"/>
+<entry
+   committed-rev="1"
+   name="zutil.obj"
+   text-time="2005-02-10T23:51:25.750000Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="a8ea5d04caab2ef9dbeb64ef196f3581"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.625000Z"/>
+<entry
+   name="sample"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="TkZLIB.pas"
+   text-time="2005-02-10T23:51:25.765625Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="02f6ab5a1c54c55ee32a8f67583c68e3"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:24.656250Z"/>
+<entry
+   committed-rev="1"
+   name="INFUTIL.OBJ"
+   text-time="2005-02-10T23:51:25.765625Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="08f31d8d5bfb34d663299edd97d07b77"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.093750Z"/>
+<entry
+   committed-rev="1"
+   name="crc32.obj"
+   text-time="2005-02-10T23:51:25.765625Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="fe8cab7bd496f7d2744cc24dd3cedbdd"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.109375Z"/>
+<entry
+   committed-rev="1"
+   name="INFTREES.OBJ"
+   text-time="2005-02-10T23:51:25.781250Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="425d53550ad313c897d264553940479b"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.140625Z"/>
+<entry
+   committed-rev="1"
+   name="TREES.OBJ"
+   text-time="2005-02-10T23:51:25.781250Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="1cbf49227e1395a972ff88c3651b146c"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.156250Z"/>
+<entry
+   committed-rev="1"
+   name="INFLATE.OBJ"
+   text-time="2005-02-10T23:51:25.796875Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="d0c7e2812deb4b48b61656e8d003b75f"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.203125Z"/>
+<entry
+   committed-rev="1"
+   name="GLDPNG.pas"
+   text-time="2005-02-10T23:51:25.796875Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="802be69ad7a5e0541ea13ccc6bc7b4bd"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.218750Z"/>
+<entry
+   committed-rev="1"
+   name="SFunc.pas"
+   text-time="2005-02-10T23:51:25.796875Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="5f12127085c653969868eec1ab2bc7f5"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.250000Z"/>
+<entry
+   committed-rev="1"
+   name="INFBLOCK.OBJ"
+   text-time="2005-02-10T23:51:25.812500Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="6107c12ddcc32d9b29d12883b02790b1"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.281250Z"/>
+<entry
+   committed-rev="1"
+   name="taki.inc"
+   text-time="2005-02-10T23:51:25.812500Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="38574383aa3e7bb26edcbc019018a7a2"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.296875Z"/>
+<entry
+   committed-rev="1"
+   name="INFFAST.OBJ"
+   text-time="2005-02-10T23:51:25.828125Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="29dd158150d5a70952fc4e29c26df149"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.328125Z"/>
+<entry
+   committed-rev="1"
+   name="INFCODES.OBJ"
+   text-time="2005-02-10T23:51:25.828125Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="87257a788279c96239aa1e413598b6ae"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.343750Z"/>
+<entry
+   committed-rev="1"
+   name="GLDStream.pas"
+   text-time="2005-02-10T23:51:25.843750Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="fbaf25c9d718aa7d4b5f97e21750cd9d"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.375000Z"/>
+<entry
+   committed-rev="1"
+   name="ADLER32.OBJ"
+   text-time="2005-02-10T23:51:25.843750Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="742f12d340bc10796cf1509221d83428"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.406250Z"/>
+<entry
+   committed-rev="1"
+   name="GLDZLIB.pas"
+   text-time="2005-02-10T23:51:25.843750Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="ece32a241bb2c7bbe9ea20d4b29927cc"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.421875Z"/>
+<entry
+   committed-rev="1"
+   name="GLDPNGStream.pas"
+   text-time="2005-02-10T23:51:25.859375Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="443ca89edc5d25d8623a4fe519897aab"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.468750Z"/>
+<entry
+   committed-rev="1"
+   name="GLDPNG3.txt"
+   text-time="2005-02-10T23:51:25.859375Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="a8417a58011025397213f4d9a383c884"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.500000Z"/>
+<entry
+   name="manual"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="DEFLATE.OBJ"
+   text-time="2005-02-10T23:51:25.875000Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="263119b5d820f863f59e3f726e3094eb"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.515625Z"/>
+<entry
+   committed-rev="1"
+   name="zlib.txt"
+   text-time="2005-02-10T23:51:25.875000Z"
+   committed-date="2004-12-23T16:36:26.796875Z"
+   checksum="234fb6a433c36365922b2f03601d7884"
+   last-author="toby"
+   kind="file"
+   prop-time="2005-02-10T23:51:25.718750Z"/>
+</wc-entries>

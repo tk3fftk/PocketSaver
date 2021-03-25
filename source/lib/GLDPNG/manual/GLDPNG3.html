@@ -1,0 +1,587 @@
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="Adobe PageMill 2.0J Win">
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
+  <TITLE>TGLDPNG3  ver 3.4 マニュアル</TITLE>
+</HEAD>
+<BODY TEXT="#373737" BGCOLOR="#ffffff">
+
+<BLOCKQUOTE>
+  <P><HR ALIGN=LEFT SIZE="5" NOSHADE></P>
+  <H2><CENTER>TGLDPNG ver 3.4 マニュアル</CENTER></H2>
+  <P ALIGN=RIGHT>1998,2000 Copyright tarquin all rights reserved.<BR>
+  2002/3/17</P>
+  <P><HR ALIGN=LEFT SIZE="5" NOSHADE></P>
+  <H2>目次</H2>
+  <OL>
+    <LI><A HREF="#hai">はじめに</A>
+    <LI><A HREF="#inst">使用環境構築</A>
+    <LI><A HREF="#manual">使い方</A>
+    <OL>
+      <LI><A HREF="#standerd">基本的な使い方</A>
+      <LI><A HREF="#link">リンク機能</A>
+      <LI><A HREF="#IDE">ＩＤＥ環境で使う</A>
+      <LI><A HREF="#GrayScale">グレイスケールでの保存</A>
+      <LI><A HREF="#AlphaChannel">アルファチャンネル</A>
+      <LI><A HREF="#angou">画像の暗号化</A>
+      <LI><A HREF="#BGTG">背景色・透明色</A>
+      <LI><A HREF="#DEFINE">コンパイラ定義</A>
+      <LI><A HREF="#gokan">旧バージョンからの移行</A>
+    </OL>
+    <LI><A HREF="#License">使用許諾</A>
+    <LI><A HREF="#support">サポート</A>
+    <LI><A HREF="#koushin">更新履歴</A>
+    <LI><B><FONT SIZE=+1>参考</FONT></B>
+    <OL>
+      <LI><A HREF="GLDPNG3_ref.html">クラスリファレンス</A>
+      <LI><A HREF="GLDPNG_FAQ.html">FAQ</A>
+    </OL>
+  </OL>
+  <P><A NAME="hai"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2>1.はじめに</H2>
+  <P>まずは、ダウンロード＆興味を持っていただきありがとうございます。このクラス(以下
+  TGLDPNG )は、TJPEGImage を扱うのと同じ感覚で PNG フォーマットの画像ファイルを読み書き出来ます。また、
+  PNG フォーマットならではの設定も可能です。</P>
+  <P>主な特徴</P>
+  <UL>
+    <LI>当然ながら PNG フォーマットの読み書き(^^;
+    <LI>標準でサポートしているフィルターでの保存
+    <LI>選択フィルターの最適化
+    <LI>ZLIBと同じ圧縮段階の設定
+    <LI>OnProgress イベントに対応
+    <LI>画像の暗号化のサポート機能
+    <LI>アルファチャンネルの読み書き
+    <LI>グレイスケール保存のサポート機能
+    <LI>15bit(32768色)や16bit(65536色)のビットマップの読み書き
+  </UL>
+  <P>ちなみに、TBitmap の使い方をある程度理解していないと最大限に使いこなすのは難しいです。また、TKPNG2.xx
+  や TPNGImage との互換は <FONT COLOR="#ff0000">ほぼ0%</FONT> です。(^^;
+  また、申し訳ありませんが以上のクラスをお使いの方は削除してからお使いください。</P>
+  <P>ご利用の際は必ず<A HREF="#License">使用許諾</A>をよくお読みの上、<B>同意される方だけ</B>お使いください。</P>
+  <P>なお、使用対象言語は <B><FONT COLOR="#ff0000" SIZE=+1>Delphi3 以上</FONT></B>です。なお、C++Builder3　以上でもコンパイルは可能ですが、<FONT
+   COLOR="#ff0000">C++Builder でのサポートは一切行いません</FONT>のでその点をご了承の上でお使いください。</P>
+  <P>＜旧バージョンの方へ＞</P>
+  <P>旧バージョンから ver 3.4 に乗り換える場合は、<A HREF="#gokan">旧バージョンからの移行</A>を参考の上で修正を行ってからご使用してください。</P>
+  <P><A NAME="inst"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2>2.使用環境構築</H2>
+  <P>まず付属の全ファイルを Delphi のパスが通っているフォルダ[*1]にコピーします。なお、旧バージョン(GLDPNG3.3などや
+  TKPNGなど)をお使いの方はコピーする前に<FONT COLOR="#ff0000">旧バージョンを
+  IDE 環境からアンインストール(注意：コンポーネントとしてインストールしている場合)後に旧バージョンのファイルをすべて削除してからコピーしてください。</FONT></P>
+  <P>[*1]<BR>
+  [ツール(T)]→[環境オプション(O)]→[ライブラリ]→[ライブラリパス]にフォルダ追加しますとコンパイル時に自動的にそのパスからユニットファイルを探してきてくれます。ちなみにディレクトリ＝フォルダと考えてください。Win95
+  から何故か呼び名が変わったのであわせてあります。</P>
+  <P><A NAME="manual"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2>3.使い方</H2>
+  <P>普通に読み書きの場合やグラフィック処理はよくわからんという方は、「a.基本的な使い方」を読めば十分でしょう。それ以降はその機能を使わないなら読み飛ばししても大丈夫です。</P>
+  <H3><A NAME="standerd"></A></H3>
+  <H3><FONT COLOR="#400080">a.基本的な使い方</FONT></H3>
+  <P>TGLDPNG の基本的な使い方として、TJPEGImage を扱う時と同じ様な書き方なります。まず、絶対忘れてはいけないのは、<B><FONT
+   COLOR="#ff0000">TGLDPNG を使用する場合は、必ずそのユニットの Uses 節に
+  GLDPNG を追加してください。</FONT></B>忘れるとコンパイラに怒られます。(笑)
+  では、単純な読み書きの例です。</P>
+  <BLOCKQUOTE>
+    <PRE>(例)
+ // 指定した Tbitmap クラスに PNG 形式で保存された画像を読み込む
+ <B><FONT COLOR="#0000a0">procedure</FONT></B><FONT COLOR="#0000a0"> LoadPNGFile(<B>const</B> filename: <B>string</B>; bitmap: TBitmap);</FONT>
+<FONT COLOR="#0000a0"> <B>var</B></FONT>
+<FONT COLOR="#0000a0">  png: TGLDPNG;</FONT>
+<FONT COLOR="#0000a0"> </FONT>
+<FONT COLOR="#0000a0"> <B>begin</B></FONT>
+<FONT COLOR="#0000a0">  png:=TGLDPNG.Create;</FONT>
+<FONT COLOR="#0000a0">  <B>try</B></FONT>
+<FONT COLOR="#0000a0">   // PNG ファイルを読み込み</FONT>
+<FONT COLOR="#0000a0">   </FONT><FONT COLOR="#ff0080">png.LoadFromFile(filename);</FONT>
+<FONT COLOR="#0000a0">   // 読み込んだ画像を bitmap にコピー</FONT>
+<FONT COLOR="#0000a0">   bitmap.Assign(png);</FONT>
+<FONT COLOR="#0000a0">  <B>finally</B></FONT>
+<FONT COLOR="#0000a0">   png.Free;</FONT>
+<FONT COLOR="#0000a0">  <B>end;</B> </FONT>
+<FONT COLOR="#0000a0"> <B>end;</B></FONT>
+
+<I> </I>// 指定した Tbitmap クラスを PNG 形式で保存
+ <B><FONT COLOR="#0000a0">procedure</FONT></B><FONT COLOR="#0000a0"> SavePNGFile(const filename: <B>string</B>; bitmap: TBitmap);</FONT>
+<FONT COLOR="#0000a0"> <B>var</B></FONT>
+<FONT COLOR="#0000a0">  png: TGLDPNG;</FONT>
+<FONT COLOR="#0000a0"> </FONT>
+<FONT COLOR="#0000a0"> <B>begin</B></FONT>
+<FONT COLOR="#0000a0">  png:=TGLDPNG.Create;</FONT>
+<FONT COLOR="#0000a0">  <B>try</B></FONT>
+<FONT COLOR="#0000a0">   // PNG クラスに bitmap を代入</FONT>
+<FONT COLOR="#0000a0">   png.Assign(bitmap);</FONT>
+<FONT COLOR="#0000a0">   // PNG 形式で保存</FONT>
+<FONT COLOR="#0000a0">   </FONT><FONT COLOR="#ff0080">png.SaveToFile(filename);</FONT>
+<FONT COLOR="#0000a0">  <B>finally</B></FONT>
+<FONT COLOR="#0000a0">   png.Free;</FONT>
+<FONT COLOR="#0000a0">  <B>end;</B> </FONT>
+<FONT COLOR="#0000a0"> <B>end;</B></FONT></PRE>
+  </BLOCKQUOTE>
+  <P>簡単なファイルの読み書きを行う場合は、ただ単に LoadFromFile メソッドや
+  SaveToFile メソッドを呼び出すだけです。</P>
+  <P>普通はなぜわざわざ TBitmap に移しているのかを疑問に思うでしょう。TGLDPNG
+  自体はあくまで<B>読み書きだけ行うクラス</B>なのでTBitmap みたいな機能はありません。そのため、図形を描いたりピクセル単位での読み込みや加工などは出来ません。表示だけなら
+  Assign せずにそのまま TImage にでも放り込めば可能です。</P>
+  <P>次に、<A HREF="GLDPNG3_ref.html">クラスリファレンス</A>やソースを見るといろいろなプロパティやイベントがありますね。このほどんどが読み書き時の設定です。では、プロパティやイベントを指定する場合の説明に移ります。通常は
+  LoadFromFile や SaveToFile などを呼び出す前に設定すればいいです。</P>
+  <BLOCKQUOTE>
+    <PRE>(例)
+<FONT COLOR="#0000a0"> // 指定した Tbitmap クラスに PNG 形式で保存された画像を読み込む</FONT>
+ <B><FONT COLOR="#0000a0">procedure</FONT></B><FONT COLOR="#0000a0"> LoadPNGFile(<B>const</B> filename: <B>string</B>; bitmap: TBitmap);</FONT>
+<FONT COLOR="#0000a0"> <B>var</B></FONT>
+<FONT COLOR="#0000a0">  png: TGLDPNG;</FONT>
+<FONT COLOR="#0000a0"> </FONT>
+<FONT COLOR="#0000a0"> <B>begin</B></FONT>
+<FONT COLOR="#0000a0">  png:=TGLDPNG.Create;</FONT>
+<FONT COLOR="#0000a0">  <B>try</B></FONT>
+<FONT COLOR="#0000a0">   </FONT><FONT COLOR="#ff0080">// マックバイナリがついているかどうかをチェック</FONT>
+<FONT COLOR="#ff0080">   // これはあくまでサンプルなので設定していますが</FONT>
+<FONT COLOR="#ff0080">   // 設定しなくても TRUE になっています。</FONT>
+<FONT COLOR="#ff0080">   png.MacBinary:=TRUE;</FONT>
+<FONT COLOR="#0000a0">   // PNG ファイルを読み込み</FONT>
+<FONT COLOR="#0000a0">   png.LoadFromFile(filename);</FONT>
+<FONT COLOR="#0000a0">   // 読み込んだ画像を bitmap にコピー</FONT>
+<FONT COLOR="#0000a0">   bitmap.Assign(png);</FONT>
+<FONT COLOR="#0000a0">  <B>finally</B></FONT>
+<FONT COLOR="#0000a0">   png.Free;</FONT>
+<FONT COLOR="#0000a0">  <B>end;</B> </FONT>
+<FONT COLOR="#0000a0"> <B>end;</B></FONT>
+
+<I><FONT COLOR="#0000a0"> </FONT></I><FONT COLOR="#0000a0">// 指定した Tbitmap クラスを PNG 形式で保存</FONT>
+ <B><FONT COLOR="#0000a0">procedure</FONT></B><FONT COLOR="#0000a0"> SavePNGFile(const filename: <B>string</B>; bitmap: TBitmap);</FONT>
+<FONT COLOR="#0000a0"> <B>var</B></FONT>
+<FONT COLOR="#0000a0">  png: TGLDPNG;</FONT>
+<FONT COLOR="#0000a0"> </FONT>
+<FONT COLOR="#0000a0"> <B>begin</B></FONT>
+<FONT COLOR="#0000a0">  png:=TGLDPNG.Create;</FONT>
+<FONT COLOR="#0000a0">  <B>try</B></FONT>
+<FONT COLOR="#0000a0">   // PNG クラスに bitmap を代入</FONT>
+<FONT COLOR="#0000a0">   png.Assign(bitmap);</FONT>
+<FONT COLOR="#ff0080">   // 圧縮タイプを「最高圧縮」にする</FONT>
+<FONT COLOR="#ff0080">   png.CompressLevel:=gplBest;</FONT>
+<FONT COLOR="#ff0080">   // フィルタータイプ設定を「なし」に</FONT>
+<FONT COLOR="#ff0080">   png.FilterType:=gpfNone;</FONT>
+<FONT COLOR="#ff0080">   // 「インタレース」で保存</FONT>
+<FONT COLOR="#ff0080">   png.InterlaceType:=gptAdam7;</FONT>
+<FONT COLOR="#0000a0">   // PNG 形式で保存</FONT>
+<FONT COLOR="#0000a0">   png.SaveToFile(filename);</FONT>
+<FONT COLOR="#0000a0">  <B>finally</B></FONT>
+<FONT COLOR="#0000a0">   png.Free;</FONT>
+<FONT COLOR="#0000a0">  <B>end;</B> </FONT>
+<FONT COLOR="#0000a0"> <B>end;</B></FONT></PRE>
+  </BLOCKQUOTE>
+  <P>これはあくまで一例です。各プロパティやイベントはクラスリファレンスに詳しい説明していますのでご覧ください。</P>
+  <P>普通、画像の読み書きする分にはこの節での説明を読むだけでこと足りるでしょう。また、TJPEGImage
+  を扱ったことがある方はわかると思いますが、扱い方はほとんど同じだと思ったはずです。違うのはクラス名と設定するプロパティぐらいです。ですので
+  TJPEGImage を扱える人には問題なく使えると思います。</P>
+  <P>あとは、付属のサンプルを参照してください。次節以降で出てくるアルファチャンネルや暗号化なども入っているので、ちょっと難しいかもしれませんが、基本は同じです。</P>
+  <P>では、頑張って使いこなして良いソフトを作ってください！</P>
+  <H3><A NAME="link"></A></H3>
+  <H3><FONT COLOR="#400080">b.リンク機能</FONT></H3>
+  <P>a の説明では、いちいち Assign を使うためメモリやリソースが単純計算でいくと２倍になってしまう場合がありますし、複数の画像を同じ設定で一度に保存したい場合などでは遅くなります。</P>
+  <P>これでは困るという場合、TGLDPNG では<B>リンク機能</B>があります。リンク機能とはただ単に<FONT
+   COLOR="#ff0000">内部で保持しているビットマップを仲介せず直接リンクさせたビットマップに読み書きをするだけ</FONT>です。(^^;;
+  ただし、その分リソース負担は軽くなりますし、TGLDPNG をプラットホーム的な使い方も出来るようになります。</P>
+  <BLOCKQUOTE>
+    <PRE>(例)
+※png には TGLDPNG が、Bitmap には TBitmap の
+　クラス作成されたものが入っているものとする。
+
+<FONT COLOR="#0000a0">// PNGファイルをBitmapに読み込む</FONT>
+<FONT COLOR="#ff0080">png.Image:=Bitmap;</FONT>
+<FONT COLOR="#0000a0">png.LoadFromFile('ファイル名');</FONT>
+
+<FONT COLOR="#0000a0">// BitmapをPNGフォーマットで書き込む</FONT>
+<FONT COLOR="#ff0080">png.Image:=Bitmap;</FONT>
+<FONT COLOR="#0000a0">png.SaveToFile('ファイル名');</FONT></PRE>
+  </BLOCKQUOTE>
+  <PRE></PRE>
+  <P>ちなみに、アルファチャンネルにもリンクしたい場合は、AlphaBitmap プロパティを使います。</P>
+  <H3><A NAME="IDE"></A></H3>
+  <H3><FONT COLOR="#400080">c.IDE環境で使う</FONT></H3>
+  <P>GLDPNG.pas をコンポーネントとしてインストールすることにより Delphi の設計時(IDE
+  環境)でも TImage などで PNG ファイルを読み込むことができます。また、<FONT
+   COLOR="#ff0080">設計時に PNG ファイルを読み込んだ場合、必ずプロジェクト内のどこかのユニットの
+  Uses 節に GLDPNG を追加してください。</FONT>そうしないと実行時に表示されません。</P>
+  <H3><A NAME="GrayScale"></A></H3>
+  <H3><FONT COLOR="#400080">d.グレイスケールでの保存</FONT></H3>
+  <P>TGLDPNG では ver 3.3 から自動的にグレイスケール保存が出来るようになりました。グレイスケールで保存する場合、GrayScale
+  プロパティを TRUE にしてください。内部で自動的に変換して保存します。</P>
+  <H3><A NAME="AlphaChannel"></A></H3>
+  <H3><FONT COLOR="#400080">e.アルファチャンネル</FONT></H3>
+  <P>TGLDPNG ではアルファチャンネルを扱うことが出来ます。ただしあくまで読み込みや保存のみで画像をアルファチャンネルを使っての表示とかは出来ません。さて、「アルファチャンネルってなんだ？」と思った方も多いでしょう。アルファチャンネルというのは転送(というか重ねあわせ)時の各ピクセルの透過度のことと思っていいです。つまり「多段階マスク」と言った方がいいですね。ちなみにレタッチ系のソフトでは範囲指定やレイヤー、光源処理なんかで大活躍しております。</P>
+  <P>まず、読み込みでは</P>
+  <UL>
+    <LI>AlphaBitmap プロパティに指定がない場合(つまり値が nil)
+  </UL>
+  <BLOCKQUOTE>
+    <P>内部のアルファチャンネル用のビットマップに読み込みます。なお、AlphaBitmapAssignTo
+    メソッドで取り出す必要があります。</P>
+  </BLOCKQUOTE>
+  <UL>
+    <LI>AlphaBitmap プロパティに別のビットマップを指定
+  </UL>
+  <BLOCKQUOTE>
+    <P>内部のアルファチャンネル用のビットマップを介さずに直接指定のビットマップに読み込みます。なお
+    <FONT COLOR="#ff0000">Image プロパティと同じビットマップを指定することは出来ません。</FONT></P>
+  </BLOCKQUOTE>
+  <P>また、読み込み後アルファチャンネルの有無については AlphaChannel プロパティで判断できます。</P>
+  <BLOCKQUOTE>
+    <PRE>(例)
+※png には TGLDPNG、AlphaBmp には TBitmap の
+  クラス作成されたものが入っているものとします。
+
+<FONT COLOR="#0000a0">// 内部に読み込み</FONT>
+<FONT COLOR="#0000a0">png.AlphaBitmap:=nil;</FONT>
+<FONT COLOR="#0000a0">png.LoadFromFile('PNGファイル名');</FONT>
+<FONT COLOR="#ff0080">if png.AlphaChannel then  // アルファチャンネルの有無チェック</FONT>
+<FONT COLOR="#ff0080">  png.AlphaBitmapAssignTo(AlphaBmp); // ここで取り出す</FONT>
+
+<FONT COLOR="#0000a0">// リンク先に読み込み</FONT>
+<FONT COLOR="#ff0080">if png.AlphaChannel then  // アルファチャンネルの有無チェック</FONT>
+<FONT COLOR="#ff0080">  png.AlphaBitmap:=AlphaBmp; // リンク先指定</FONT>
+<FONT COLOR="#0000a0">png.LoadFromFile('PNGファイル名');</FONT></PRE>
+  </BLOCKQUOTE>
+  <P>書き込みは、最初に <FONT COLOR="#ff0000">AlphaChannel プロパティを TRUE</FONT>
+  にします。これを忘れるとアルファチャンネルの書き込みは無視されます。次に、</P>
+  <UL>
+    <LI>内部のアルファチャンネル用のビットマップを使用。( AlphaBitmap プロパティに
+    nil 指定)
+  </UL>
+  <BLOCKQUOTE>
+    <P>内部のアルファチャンネル用のビットマップを指定します。なお、内部のアルファチャンネルビットマップに設定する場合は
+    AlphaBitmapAssign メソッドを使います。</P>
+  </BLOCKQUOTE>
+  <UL>
+    <LI>AlphaBitmap プロパティに別のビットマップを指定
+  </UL>
+  <BLOCKQUOTE>
+    <P>内部のアルファチャンネル用のビットマップを使用せずに直接指定のビットマップをアルファチャンネルとして使います。なお
+    <FONT COLOR="#ff0000">Image プロパティと同じビットマップを指定することは出来ません。</FONT></P>
+  </BLOCKQUOTE>
+  <P>これでアルファチャンネルを付けて書き込んでくれます。ただし、</P>
+  <UL>
+    <LI>一緒に保存する画像と<FONT COLOR="#ff0000">同じ縦横の大きさ</FONT>
+    <LI><FONT COLOR="#ff0000">256色画像(PixelFormat プロパティが pf8bit)</FONT>であること(注意：パレットは関係ないです)
+  </UL>
+  <P>が条件です。この条件に当てはまらない時はたとえ指定されてても<B><FONT
+   COLOR="#ff0000">無視</FONT></B>されます。</P>
+  <BLOCKQUOTE>
+    <PRE>(例)
+※png には TGLDPNG、AlphaBmp には TBitmap の
+  クラス作成されたものが入っているものとします。
+
+<FONT COLOR="#0000a0">// 内部のを使う</FONT>
+<FONT COLOR="#ff0080">png.AlphaChannel:=TRUE;</FONT>
+<FONT COLOR="#0000a0">png.AlphaBitmap:=nil;</FONT>
+<FONT COLOR="#0000a0">png.SaveToFile('PNGファイル名');</FONT>
+
+<FONT COLOR="#0000a0">// リンク先のを使う</FONT>
+<FONT COLOR="#ff0080">png.AlphaChannel:=TRUE;</FONT>
+<FONT COLOR="#ff0080">png.AlphaBitmap:=AlphaBmp; // リンク先指定</FONT>
+<FONT COLOR="#0000a0">png.SaveToFile('PNGファイル名');</FONT></PRE>
+  </BLOCKQUOTE>
+  <P>最後に、TGLDPNGでは<B>読み込んだアルファチャンネル値は反転されて代入</B>されます。つまり、<FONT
+   COLOR="#ff0000">0は不透明になり、255は透明</FONT>となります。ただし、コンパイラ定義
+  <B><A HREF="#DEFINE">GLD_NOREVERSE_ALPHA</A></B> を定義することにより、反転をしなくなります。</P>
+  <P>また、読み込み時 2/4/16/256色画像ではアルファチャンネル値の透明指定が1つで他はすべて不透明指定の場合、自動的に透明色として扱います。</P>
+  <P>(補足)</P>
+  <P>PNG でサポートされているパレット形式のアルファチャンネルは GLDPNG ではサポートされておりません。読み込み時、この様な形式は透明色指定かビットマップ型のアルファチャンネルに変換されます。</P>
+  <H3><A NAME="angou"></A></H3>
+  <H3><FONT COLOR="#400080">f.画像の暗号化</FONT></H3>
+  <P>画像の暗号化は PNG では定義されておらず、<B>TGLDPNG のみのローカル仕様</B>です。ですが、暗号化されても他のビューアで問題無く読めます。ただし、当たり前ですが読めるだけで表示されたイメージはおかしなものになります。また、暗号化が出来るといっても
+  <B>TGLDPNG自体は何もしません。</B>あくまで暗号化・復号化を出来るようイベントを発生させているに過ぎません。</P>
+  <P>暗号化をする場合は、</P>
+  <UL>
+    <LI>データを暗号化するプログラム
+    <LI>暗号化されたデータを復号化するプログラム
+  </UL>
+  <P>を各自で用意しなくてはいけません。暗号化のアルゴリズムについては暗号を扱った書籍が沢山出ていますのでそれを参考にしてください。ただし、中には特許が取得されているものや、国外への輸出規制がされているものもありますのでご注意ください。なお、サンプルでも簡単ではありますが暗号化のルーチンが入っていますので参考にしてください。</P>
+  <P>では、まず、暗号化ですが OnEncode イベントが対応しています。基本的には
+  OnEncode イベント 内で引数 pbuf が示すデータを buflen のデータバイト数分だけに暗号をかけることになります。他の引数は暗号アルゴリズムで参考にしてください程度です。サンプルでは以下の様に処理しています。</P>
+  <BLOCKQUOTE>
+    <PRE><FONT COLOR="#0000a0">// 暗号イベント（あくまで例でてきとーなものです）</FONT>
+<FONT COLOR="#0000a0">procedure TForm1.EncodeEvt(sender: TObject; pbuf: pbyte; buflen,lineno: integer; password: string);</FONT>
+<FONT COLOR="#0000a0">var</FONT>
+<FONT COLOR="#0000a0"> i,st,mx,af: integer;</FONT>
+<FONT COLOR="#0000a0"> pc: pchar;</FONT>
+<FONT COLOR="#0000a0">begin</FONT>
+<FONT COLOR="#0000a0"> mx:=length(password);</FONT>
+<FONT COLOR="#0000a0"> pc:=pchar(password);</FONT>
+<FONT COLOR="#0000a0"> st:=((lineno+3) and 2);</FONT>
+<FONT COLOR="#0000a0"> if st&gt;=mx then st:=st-mx;</FONT>
+<FONT COLOR="#0000a0"> Inc(pc,st);</FONT>
+<FONT COLOR="#0000a0"> af:=0;</FONT>
+<FONT COLOR="#0000a0"> for i:=0 to Pred(buflen) do</FONT>
+<FONT COLOR="#0000a0"> begin</FONT>
+<FONT COLOR="#0000a0">  af:=((pbuf^-pbyte(pc)^) and $FF) xor af;</FONT>
+<FONT COLOR="#0000a0">  pbuf^:=af;</FONT>
+<FONT COLOR="#0000a0">  Inc(st); Inc(pc);</FONT>
+<FONT COLOR="#0000a0">  if st&gt;=mx then</FONT>
+<FONT COLOR="#0000a0">   begin</FONT>
+<FONT COLOR="#0000a0">    st:=0;</FONT>
+<FONT COLOR="#0000a0">    pc:=pchar(password);</FONT>
+<FONT COLOR="#0000a0">   end;</FONT>
+<FONT COLOR="#0000a0">  Inc(pbuf);</FONT>
+<FONT COLOR="#0000a0"> end;</FONT>
+<FONT COLOR="#0000a0">end;</FONT></PRE>
+  </BLOCKQUOTE>
+  <P>次に復号化ですが OnDecode イベントを使います。また、送られているデータは
+  OnEncode とまったく同じなんで省略します。基本的に復号化は暗号化で行った処理を逆にしているだけです。以下がサンプルでの例です。</P>
+  <BLOCKQUOTE>
+    <PRE><FONT COLOR="#0000a0">// 復号イベント（あくまで例でてきとーなものです）</FONT>
+<FONT COLOR="#0000a0">procedure TForm1.DecodeEvt(sender: TObject; pbuf: pbyte; buflen,lineno: integer; password: string);</FONT>
+<FONT COLOR="#0000a0">var</FONT>
+<FONT COLOR="#0000a0"> i,st,mx,af,n: integer;</FONT>
+<FONT COLOR="#0000a0"> pc: pchar;</FONT>
+<FONT COLOR="#0000a0">begin</FONT>
+<FONT COLOR="#0000a0"> mx:=length(password);</FONT>
+<FONT COLOR="#0000a0"> pc:=pchar(password);</FONT>
+<FONT COLOR="#0000a0"> st:=((lineno+3) and 2);</FONT>
+<FONT COLOR="#0000a0"> if st&gt;=mx then st:=st-mx;</FONT>
+<FONT COLOR="#0000a0"> Inc(pc,st);</FONT>
+<FONT COLOR="#0000a0"> af:=0;</FONT>
+<FONT COLOR="#0000a0"> for i:=0 to Pred(buflen) do</FONT>
+<FONT COLOR="#0000a0"> begin</FONT>
+<FONT COLOR="#0000a0">  n:=pbuf^;</FONT>
+<FONT COLOR="#0000a0">  pbuf^:=((pbuf^ xor af)+pbyte(pc)^) and $FF;</FONT>
+<FONT COLOR="#0000a0">  af:=n;</FONT>
+<FONT COLOR="#0000a0">  Inc(st); Inc(pc);</FONT>
+<FONT COLOR="#0000a0">  if st&gt;=mx then</FONT>
+<FONT COLOR="#0000a0">   begin</FONT>
+<FONT COLOR="#0000a0">    st:=0;</FONT>
+<FONT COLOR="#0000a0">    pc:=pchar(password);</FONT>
+<FONT COLOR="#0000a0">   end;</FONT>
+<FONT COLOR="#0000a0">  Inc(pbuf);</FONT>
+<FONT COLOR="#0000a0"> end;</FONT>
+<FONT COLOR="#0000a0">end;</FONT></PRE>
+  </BLOCKQUOTE>
+  <P>後はパスワードを使う場合は、Password プロパティを読み書き前に設定すればいいでしょう。なお、読み込み時に
+  読み込んだ画像データが暗号化されている場合で Password プロパティが設定されていない時に
+  OnPassword イベントが呼ばれます。このイベントの説明はクラスリファレンスをご覧ください。</P>
+  <P>最後に、<B><FONT COLOR="#ff0000">この機能はあくまでローカル的な用途の画像に使用してください。</FONT></B>前にも言いましたが他のビューアでは正常に表示されません。また、パスワードを忘れた、アルゴリズムを変えたという場合などは完全に復号されないでしょうし、暗号化・復号化自体を
+  TGLDPNG が持っていないわけですから完全に同じアルゴリズムを使っていないと他の人が作った暗号化された画像と互換はありません。また、暗号化でのトラブルを私に言ってこられても非常に迷惑ですのでやめてください。この機能は使用者の責任で使ってください。</P>
+  <H3><A NAME="BGTG"></A></H3>
+  <H3><FONT COLOR="#400080">g.背景色、透明色</FONT></H3>
+  <P>背景色と透明色は TGLDPNG ではサポートしています。「透明色はともかく背景色なんて必要ないんでは？」と思われてしまいそうですが、透明色やアルファチャンネルがある場合に普通のビューアはこの背景色の上に画像を透過させますので一応必要です。(^^;;</P>
+  <P>読み込み時、あれば TransColor プロパティや BGColor プロパティに値が入り、無ければ
+  <B>GLD_NONECOLOR</B> が入ります。</P>
+  <P>書き込み時、TransColor プロパティや BGColor プロパティが <B>GLD_NONECOLOR</B>
+  で無ければ指定されている色を使います。</P>
+  <P>ちなみに、<B><FONT COLOR="#ff0000">アルファチャンネルが有効な場合は透明色は無視されます。</FONT></B></P>
+  <P><B>(注意！！)</B></P>
+  <P>ver 3.4からは、1/16/256画像の場合だけ TransColor プロパティ・ BGColor
+  プロパティ でパレットの Index 指定も可能になりました。 Index 指定の場合は、<B><FONT
+   COLOR="#ff0000">Index 値に $1000000 を OR した値</FONT></B>になります。</P>
+  <BLOCKQUOTE>
+    <PRE><FONT COLOR="#0000a0">(例)</FONT>
+<FONT COLOR="#0000a0">// 取り出し</FONT>
+<FONT COLOR="#0000a0">if ((png.TransColor and $1000000)&lt;&gt;0) and (png.TransColor&lt;&gt;GLD_NONECOLOR) then</FONT>
+<FONT COLOR="#0000a0">  idx:=png.TransColor and $FF;</FONT>
+
+<FONT COLOR="#0000a0">// 設定</FONT>
+<FONT COLOR="#0000a0">png.TransColor:=(idx or $1000000);</FONT></PRE>
+  </BLOCKQUOTE>
+  <P>特に読み込みでは1/16/256色画像の場合では必ず Index 値になりますので<B><FONT
+   COLOR="#ff0000">旧バージョン対応のプログラムは修正が必要ですので注意してください。</FONT></B></P>
+  <P>また、<FONT COLOR="#ff0000">1/16/256色画像以外で Index 指定は無視されて普通の色と同じ扱いになります。</FONT>例えば、$1000001(Index=1)
+  とした場合は、$000001(R=1,G=0,B=0) として扱われるということです。</P>
+  <H3><A NAME="DEFINE"></A></H3>
+  <H3><FONT COLOR="#400080">h.コンパイラ定義</FONT></H3>
+  <P>TGLDPNG ではいくつかのコンパイル定義があり、それにより将来拡張されそうな機能があった場合や特殊な設定でのコンパイルなどに柔軟に対応できるようにしています。</P>
+  <P>種類ですが、</P>
+  <P><B>・GLD_READONLY</B> は、TGLDPNG を読み込みのみのクラスとしてコンパイルされます。書き込み機能が不要の場合は指定することで実行ファイルサイズを節約できます。</P>
+  <P><B>・GLD_SUPPORT_BIT15</B> は、15Bit(R:G:B=5:5:5) 展開指定されている
+  PNGフォーマットを指定どおり展開します。通常は 16Bit(R:G:B=5:6:5) で展開します。</P>
+  <P><B>・GLD_NOREVERSE_ALPHA</B> は、アルファチャンネルの値の反転を阻止します。これにより
+  PNG と同じアルファチャンネルになります。</P>
+  <P>なお、コンパイラ定義は[プロジェクト]→[オプション]→[ディレクトリ/条件]→[条件定義]で指定します。</P>
+  <P>(注意！！)</P>
+  <P>ver 3.4 から定義名が変更されていますので、旧バージョンの方は修正が必要です。</P>
+  <P><A NAME="gokan"></A></P>
+  <H3><FONT COLOR="#400080">i.旧バージョンからの移行</FONT></H3>
+  <P>TKPNG や TKPNGLE からの移行の場合の変更点を説明します。また、旧バージョンからの移行の際、<FONT
+   COLOR="#ff0000">必ず旧バージョンをアンインストール(全ファイルを削除)してから　GLDPNG
+  をインストールしてください。</FONT></P>
+  <P><B>(1) TKPNG ver 2.xx の場合</B></P>
+  <BLOCKQUOTE>
+    <P>TKPNG ver 2.xx からの移行の場合、読み書きだけで TGLDCustomDIB の機能を使っていなければ簡単に移行出来ます。以下が書き換えるプロパティです。</P>
+    <PRE>CompressionLevel → CompressionLevel
+Interlace → InterlaceType
+OrgBitCount → OriginalBitCount
+Left,Top,AlphaChannel → 使用不可
+AlphaChannelFlag → AlphaChannel</PRE>
+    <P>後は各プロパティの型にあわせれば大丈夫でしょう。また、テキストのテキストキーの指定は出来なくなっています。</P>
+  </BLOCKQUOTE>
+  <P><B>(2) TKPNGLE の場合</B></P>
+  <BLOCKQUOTE>
+    <P>TKPNGLE からの移行の場合は、CompressionLevel プロパティに入れていた値に＋１すれば大丈夫です。</P>
+  </BLOCKQUOTE>
+  <P><B>(3) TGLDPNG ver 3.2 の場合</B></P>
+  <BLOCKQUOTE>
+    <P>GetAlphaBitmap メソッドは　AlphaBitmapAssignTo メソッドに改名されています。</P>
+  </BLOCKQUOTE>
+  <P><B>(4)　TGLDPNG ver 3.3 の場合</B></P>
+  <BLOCKQUOTE>
+    <P><B>・</B>1/16/256色画像の透明色や背景色の値が変更になっていますので修正が必要です。</P>
+    <P><B>・CompressLevel プロパティの型が変更になっていますので修正が必要な場合があります。</B></P>
+    <P><B>・</B>コンパイル定義名が変更されていますので、もし使用している場合は修正が必要です。</P>
+  </BLOCKQUOTE>
+  <P><A NAME="License"></A></P>
+  <P><HR ALIGN=LEFT NOSHADE></P>
+  <H2>4.使用許諾</H2>
+  <P>TGLDPNG、および ZLIB 以外の関数・クラスの著作権は作者(Tarquin)にあります。GLDPNG
+  を使用する場合以下の使用許諾をよくお読みの上で<B><FONT SIZE=+1>同意された方だけ使用ができます。</FONT></B></P>
+  <P><CENTER><HR WIDTH="50%" SIZE="1" NOSHADE></CENTER></P>
+  <P><B>※使用許諾( 2001/07/04 改定 )</B></P>
+  <OL>
+    <LI>本ソフトウェアは、フリーソフトウェアです。商用・非商用に関わらず<B><FONT
+     COLOR="#ff0000">無料で使用できます。</FONT></B>
+    <LI>本ソフトウェアは<B>アプリケーション内への組み込みだけに使用を許可</B>しております。DLLやActiveXなどへの再利用可能なモジュールへの組み込みは<B>一切許可しておりません。</B>ただし、自作したアプリケーションのみで使い、かつインタフェースの非公開、単体での配布をしないという条件を厳守する場合に限り許可いたします。
+    <LI>本ソフトウェアを作者の許可無く<B>改造・改変してもかまいませんが、あくまで、改造者・改変者のみが使用する場合だけ許可します。</B>また、改造・改変したものは<B>サポート対象外</B>となりますので、各自の責任でご使用ください。なお、この場合でも必ず著作権表示をするようお願いいたします。
+    <LI>GNU GPLライセンスのソフトウェアでの使用は禁止します。
+    <LI>本ソフトウェアで使われているプログラムのソースコードを改造・改変の有無に関わらず無断で引用・転載することを禁止します。
+    <LI>本ソフトウェアのバージョンアップおよびバグ対応や、<B><FONT COLOR="#ff0000">運用した結果の影響については作者(Tarquin)は一切責任を負わないものとします。</FONT></B>
+  </OL>
+  <P>また、使用した場合以下の著作権表示を、ヘルプファイル(またはマニュアル)か画面に<B>必ず</B>表示しなくてはいけません。</P>
+  <P><B><FONT COLOR="#008080">GLDPNG (c) 1998-2001 Copyright Tarquin All
+  Rights Reserved.<BR>
+  ZLIB ver 1.1.3 (c) 1995-1996 Copyright Jean-loup Gailly and Mark Adler</FONT></B></P>
+  <P>なお、商用使用の場合は出来ればで結構ですからメールなどでご連絡ください。(あくまで確認のためだけで不許可やロイヤリティ請求はありません)</P>
+  <P><B>※ZLIBの著作権表示について</B></P>
+  <P>ZLIBの著作権表記ですがZLIB自体著作権表示を強制しておりませんが、GLDPNG自体ZLIBなしでは成り立ちませんので私の判断で著作権表示を<B><FONT
+   COLOR="#ff0000">強制</FONT></B>しております。また表記が違うと言われそうですがバージョン区別のためこの様にしておりますのでご了承ください。</P>
+  <P><B>※GLDPNG単体の転載・付加など</B></P>
+  <P>禁止です。許可いたしません。</P>
+  <P><CENTER><HR WIDTH="50%" SIZE="1" NOSHADE></CENTER></P>
+  <P>うるさく言っていますが、ここにこう書かないと本当にやる方が<B>いた</B>ので厳しくしました。(現に著作権表示のないアプリケーションも存在します。）。また、転載に関しましては
+  <FONT COLOR="#ff0000">GLDPNG 単体のことであり、使用したアプリケーションではありませんのでお間違えのないようご注意ください。</FONT></P>
+  <H3><A NAME="support"></A></H3>
+  <H3><HR ALIGN=LEFT NOSHADE></H3>
+  <H2>5.サポート</H2>
+  <P>ご意見・ご感想・バグ情報は、私宛のメールかWEBサイトの掲示板の方にお願いします。なお、<B>必ず質問などにお答えできるとは限りません</B>のでご了承ください。</P>
+  <P><B>注意：C++Builderはサポート対象外です！！</B></P>
+  <P>問い合わせの際は<B><FONT COLOR="#ff0000">必ず日本語</FONT></B>でお願いします。それ以外の言語は止めてください。(特に日本人以外の方。英語なら読めますが返事で困るので・・・）</P>
+  <P>最新バージョンや GLDPNG のバグや関連情報は私のWEBサイトにアップしますのでご覧ください。</P>
+  <P>たき厩舎： <A HREF="http://www.phoenix-c.or.jp/~taki/" TARGET="_blank">http://www.phoenix-c.or.jp/~taki/</A></P>
+  <P>mail: <A HREF="mailto:tarquin@px-c.net">tarquin@px-c.net</A></P>
+  <P></P>
+  <P><B>＜ Delphian World からダウンロードした方へ ＞</B></P>
+  <P>マイナーバージョンアップの場合は、DelphianWorld には報告していませんので、必ず私のサイトでご確認するようにしてください。</P>
+  <P><A NAME="koushin"></A><HR ALIGN=LEFT NOSHADE></P>
+  <H2>6.更新履歴</H2>
+  <P>2002/3/17 <I><FONT COLOR="#ff00ff">ver 3.4.1 → ver 3.4.3</FONT></I></P>
+  <UL>
+    <UL>
+      <LI>256色以下時の透明色取得のバグを修正
+      <LI>TGLDPNGのAssign処理のバグを修正
+    </UL>
+  </UL>
+  <P>2001/10/23</P>
+  <UL>
+    <UL>
+      <LI>メールアドレスを変更
+    </UL>
+  </UL>
+  <P>2001/07/08 <I><FONT COLOR="#ff00ff">ver 3.4 → ver 3.4.1</FONT></I></P>
+  <UL>
+    <UL>
+      <LI>出力時のGLD_REVERSEALPHA条件を抜かしていたのを修正
+    </UL>
+  </UL>
+  <P>2001/07/04 <I><FONT COLOR="#ff00ff">ver 3.3.3 → ver 3.4</FONT></I></P>
+  <UL>
+    <UL>
+      <LI>透明色・背景色にIndex指定を出来るようにした。
+      <LI>Windows環境の基準ガンマ値(0．45455)を標準で出力するようにした。
+      <LI>出力時、TBitmapの透明色を無視するようにした。(特殊な指定をされるため)
+      <LI>アルファチャンネルの反転を阻止出来るようにした。
+      <LI>16bit関連の変換バグ修正。
+      <LI>ZLIBを1.1.3にした。
+      <LI>使用許諾改正。
+      <LI>マニュアル修正。
+      <LI>FAQ追加。
+    </UL>
+  </UL>
+  <P>2000/12/27<I><FONT COLOR="#ff00ff"> ver 3.3.1 → ver 3.3.3</FONT></I></P>
+  <UL>
+    <UL>
+      <LI>読み込みのみのコンパイル不可を修正
+    </UL>
+  </UL>
+  <P>2000/11/06 <I><FONT COLOR="#ff00ff">ver 3.3 → ver 3.3.1</FONT></I></P>
+  <UL>
+    <UL>
+      <LI>PixelformatプロパティがpfCustom時の不都合を修正(多分・・)
+      <LI>グレイスケール保存時にパレットが付いていたのを修正
+      <LI>２段階・１６段階グレイスケール保存時の背景色・透明色指定を修正
+      <LI>コメントを厳密に読み込ませる様に修正
+    </UL>
+  </UL>
+  <P>2000/10/30 <I><FONT COLOR="#ff00ff">ver 3.2.6 → ver 3.3</FONT></I></P>
+  <UL>
+    <UL>
+      <LI>15bit/16bitビットマップの読み込み・保存を追加
+      <LI>ほぼ完全なグレイスケール保存の追加
+      <LI>保存時間の追加
+      <LI>色情報の追加
+      <LI>細かいバグ修正
+      <LI>一部仕様変更
+      <LI>MNG内部ストリーム用に修正
+      <LI>マニュアル全修正
+    </UL>
+  </UL>
+  <P>2000/07/21 <I><FONT COLOR="#ff00ff">ver 3.2.5 → ver 3.2.6</FONT></I></P>
+  <UL>
+    <UL>
+      <LI>C++builder4以上で起こる不都合修正
+      <LI>使用規約改正
+    </UL>
+  </UL>
+  <P>2000/03/26 <I><FONT COLOR="#ff00ff">ver 3.2.2 → ver 3.2.5?</FONT></I></P>
+  <UL>
+    <UL>
+      <LI>アルファチャンネルがある場合の読み込みでプログレスイベントが正常に発生しないバグを修正
+      <LI>メモリリークらしきものを修正
+      <LI>ヘルプファイルがver 3.2.3と同じになった（いつもすまないねぇ＞紅月さん）
+    </UL>
+  </UL>
+  <P>2000/02/18 <I><FONT COLOR="#ff00ff">ver 3.2.2 → ver 3.2.3</FONT></I></P>
+  <UL>
+    <UL>
+      <LI>4色読み込みのバグ修正
+      <LI>ノーマルなヘルプファイルを付加（ありがとう紅月燐火さん！！）
+      <LI>このリファレンスの説明一部修正
+      <LI>使用規約の改定
+    </UL>
+  </UL>
+  <P>2000/02/10 <I><FONT COLOR="#ff00ff">ver 3.2.1 → ver 3.2.2</FONT></I></P>
+  <UL>
+    <UL>
+      <LI>書き込み時のZLIB関係の関数バグを修正
+      <LI>範囲チェックやオーバーフローチェックをOFFにするコンパイラ命令を埋め込み
+      <LI>TBitmapをGraphics.TBitmapにした（Windows.TBitmapとの区別のため）
+    </UL>
+  </UL>
+  <P>2000/02/03 <I><FONT COLOR="#ff00ff">ver 3.2 → ver 3.2.1</FONT></I></P>
+  <UL>
+    <UL>
+      <LI>4段階と256段階アルファチャンネル付きグレイスケール画像、4色カラー画像の読み込みバグを修正
+    </UL>
+  </UL>
+  <P>2000/02/02 <I><FONT COLOR="#ff00ff">ver 3.1 → ver 3.2</FONT></I></P>
+  <UL>
+    <UL>
+      <LI>abstractが付いていた一部のメソッドのoverrideのし忘れを修正。(^^;;
+      <LI>sBITチャンクサポートで3万色・6万色画像として保存も可能になった。
+      <LI>解像度入出力サポート。これでアスペクト比やdpi値の保存可能。
+      <LI>アルファチャンネルがある場合でも透明色を出力していたバグを修正。
+      <LI>リードのみだけのコンパイルモードを追加。
+      <LI>TGLDPNG自体がグラフィッククラスらしくなかったのでそれなりに使えるように修正。
+      <LI>読み込んだデータ情報を少し返す様に修正。
+      <LI>パレット型アルファチャンネルの変換のバグを修正。
+      <LI>リファレンスマニュアルの大修正＆加筆。(^^;
+    </UL>
+  </UL>
+  <P>2000/01/28 初版</P>
+  <P><HR ALIGN=LEFT NOSHADE></BLOCKQUOTE>
+</BODY>
+</HTML>
